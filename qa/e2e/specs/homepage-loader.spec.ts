@@ -55,8 +55,9 @@ for (const delay of [1000, 6000]) {
         release();
         await expect.poll(async () => {
           await page.clock.runFor(16);
-          return page.locator('[data-loaded]').getAttribute('data-loaded');
-        }).toBe('true');
+          // The fallback only hides the server-rendered loader; hydration removes it.
+          return page.locator('[data-site-loader]').count();
+        }).toBe(0);
         await expect(page.locator('html')).not.toHaveAttribute('data-saw-hydrated-loader', 'true');
       }
       await expect(page.locator('[data-site-loader]')).toHaveCount(0);

@@ -36,5 +36,43 @@ jobs:
           npm ci --prefix qa --no-audit --no-fund
       - run: npm run build:enclave
       - run: npm run typecheck
+      - name: Production build
+        env:
+          # The browser job builds confidential mode with its synthetic release manifest.
+          NEXT_PUBLIC_CONFIDENTIAL_CASES: '0'
+          NEXT_TELEMETRY_DISABLED: '1'
+        run: npm run build
+      - name: Confidential runtime tests
+        run: npm run test:runtime
       - name: Unit and service tests
         run: npm test -- --maxWorkers=2 --watchAll=false
+
+  browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            enclave/package-lock.json
+            qa/package-lock.json
+      - name: Install native test dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends curl ffmpeg poppler-utils util-linux openssl
+      - name: Install locked packages
+        run: |
+          npm ci --legacy-peer-deps --no-audit --no-fund
+          npm ci --prefix enclave --ignore-scripts --no-audit --no-fund
+          npm ci --prefix qa --no-audit --no-fund
+      - name: Install Chromium
+        run: bash scripts/ci/install-playwright-chromium.sh qa
+      - run: npm run build:enclave
+      - name: Confidential browser journeys
+        run: npm run test:e2e:confidential
