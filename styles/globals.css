@@ -1,0 +1,678 @@
+@import "tailwindcss";
+
+/*
+ * ACCESSIBILITY COMPLIANCE NOTES
+ * WCAG 2.1 AA requires minimum 4.5:1 contrast for normal text
+ * WCAG 2.1 AAA requires minimum 7:1 contrast for normal text  
+ * All primary color combinations meet or exceed WCAG 2.1 AA standards
+ * Button colors have been adjusted for proper contrast with white text
+ * Muted text in dark mode has been lightened for better accessibility
+ */
+
+@source "../pages/**/*.{js,ts,jsx,tsx}";
+@source "../components/**/*.{js,ts,jsx,tsx}";
+
+/* CSS Variables - Light Mode (aligned with Vera Figma design) */
+:root {
+  --font-size: 16px;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  /* Display face used by the redesigned marketing pages */
+  --font-display: 'Asta Sans', 'Inter Tight', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-tight: 'Inter Tight', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ease-smooth: cubic-bezier(0.19, 1, 0.22, 1);
+  --background: #FAFAF9;
+  --foreground: #1a1a1e;
+  --card: #F0EFED;
+  --card-foreground: #1a1a1e;
+  --popover: #FFFFFF;
+  --popover-foreground: #1a1a1e;
+  --primary: #1a1a1e;
+  --primary-foreground: #FAFAF9;
+  --secondary: #E8E7E5;
+  --secondary-foreground: #1a1a1e;
+  --muted: #E8E7E5;
+  --muted-foreground: #9ca3af; /* Improved contrast for dark mode */
+  --muted-foreground-dark: #9ca3af; /* Improved contrast for dark mode */
+  --accent: #E0DFDD;
+  --accent-foreground: #1a1a1e;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --warning: #c2410c;
+  --warning-foreground: #ffffff;
+  --success: #166534;
+  --success-foreground: #ffffff;
+  --border: rgba(10, 10, 11, 0.10);
+  --input: rgba(10, 10, 11, 0.10);
+  --input-background: #EDEDED;
+  --switch-background: #C8C8CC;
+  --ring: rgba(10, 10, 11, 0.15);
+  --chart-1: #818cf8;
+  --chart-2: #34d399;
+  --chart-3: #f472b6;
+  --chart-4: #fbbf24;
+  --chart-5: #a78bfa;
+  --sidebar: #F0EFED;
+  --sidebar-foreground: #1a1a1e;
+  --sidebar-primary: #1a1a1e;
+  --sidebar-primary-foreground: #FAFAF9;
+  --sidebar-accent: #E8E7E5;
+  --sidebar-accent-foreground: #1a1a1e;
+  --sidebar-border: rgba(10, 10, 11, 0.10);
+  --sidebar-ring: rgba(10, 10, 11, 0.15);
+  --radius: 0.5rem;
+
+  /* Vera theme tokens - Light */
+  --vera-ink: #0a0a0b;
+  --vera-paper: #FAFAF9;
+  --vera-card-bg: #F0EFED;
+  --vera-header-bg: rgba(250, 250, 249, 0.8);
+  --vera-tooltip-bg: #FFFFFF;
+  --vera-tooltip-text: #1a1a1e;
+  --vera-tooltip-border: rgba(10, 10, 11, 0.08);
+  --vera-teal-label: #1E4D45;
+  --vera-teal-emphasis: #2E6D6D;
+  --vera-chart-grid: rgba(10, 10, 11, 0.04);
+  --vera-chart-axis: rgba(10, 10, 11, 0.20);
+  --vera-chart-line: rgba(10, 10, 11, 0.35);
+  --vera-chart-fill-start: rgba(10, 10, 11, 0.06);
+  --vera-chart-fill-end: rgba(10, 10, 11, 0);
+  --vera-chart-bar: rgba(10, 10, 11, 0.12);
+  --vera-ai-bg: #F0F0F8;
+  --vera-ink-boost: 1.45;
+
+  /* Landing page semantic tokens - Light (WCAG AA: ≥4.5:1 normal text) */
+  --vera-text-high: rgba(10,10,11,0.92);
+  --vera-text-mid: rgba(10,10,11,0.88);
+  --vera-text-low: rgba(10,10,11,0.80);
+  --vera-text-muted: rgba(10,10,11,0.72);
+  --vera-text-faint: rgba(10,10,11,0.62);
+  --vera-icon-subtle: rgba(10,10,11,0.58);
+  --vera-border-subtle: rgba(10,10,11,0.04);
+  --vera-border-light: rgba(10,10,11,0.15);
+  --vera-highlight-bg: rgba(10,10,11,0.92);
+  --vera-highlight-text: rgba(255,255,255,0.95);
+  --vera-hover-fill: rgba(10,10,11,0.92);
+  --vera-hero-bg: #FAFAF9;
+  --vera-hero-grad-solid: rgba(248,248,248,1);
+  --vera-hero-grad-mid: rgba(248,248,248,0.5);
+  --vera-hero-grad-end: rgba(248,248,248,0.2);
+
+  /* Landing dark section & accent (homepage Trust/CTA) */
+  --vera-bg-dark: #0a0a0b;
+  --vera-bg-card-dark: #111113;
+  --vera-accent-hover: #357A7A;
+  --vera-accent-hover-subtle: rgba(61, 139, 139, 0.1);
+  --vera-accent-border-hover: rgba(61, 139, 139, 0.4);
+  --vera-accent-muted: #7AACAC;   /* was VERA_ACCENT_300 */
+  --vera-accent-mid: #3D8B8B;     /* was VERA_ACCENT_400 */
+  --vera-section-padding-y: 3.5rem; /* 56px - consistent section rhythm */
+  --vera-doc-max-w: 42rem; /* memo/report view width (narrower than marketing) */
+  --vera-classification-bar: 2px; /* thin horizontal bar next to labels */
+
+  --shadow-2xs: 0px 2px 10px 0px hsl(0 0% 0% / 0.03);
+  --shadow-xs: 0px 2px 10px 0px hsl(0 0% 0% / 0.03);
+  --shadow-sm: 0px 2px 10px 0px hsl(0 0% 0% / 0.06), 0px 1px 2px -1px hsl(0 0% 0% / 0.06);
+  --shadow: 0px 2px 10px 0px hsl(0 0% 0% / 0.06), 0px 1px 2px -1px hsl(0 0% 0% / 0.06);
+  --shadow-md: 0px 2px 10px 0px hsl(0 0% 0% / 0.06), 0px 2px 4px -1px hsl(0 0% 0% / 0.06);
+  --shadow-lg: 0px 2px 10px 0px hsl(0 0% 0% / 0.06), 0px 4px 6px -1px hsl(0 0% 0% / 0.06);
+  --shadow-xl: 0px 2px 10px 0px hsl(0 0% 0% / 0.06), 0px 8px 10px -1px hsl(0 0% 0% / 0.06);
+  --shadow-2xl: 0px 2px 10px 0px hsl(0 0% 0% / 0.15);
+  --tracking-normal: -0.01em;
+  --spacing: 0.25rem;
+  color-scheme: light;
+}
+
+/* CSS Variables - Dark Mode (Vera Dark Theme) */
+.dark {
+  --background: #0a0a0b;
+  --foreground: #f5f5f4;
+  --card: #111113;
+  --card-foreground: #f5f5f4;
+  --popover: #111113;
+  --popover-foreground: #f5f5f4;
+  --primary: #f5f5f4;
+  --primary-foreground: #0a0a0b;
+  --secondary: #1a1a1e;
+  --secondary-foreground: #f5f5f4;
+  --muted: #1a1a1e;
+  --muted-foreground: #71717a;
+  --accent: #1f1f24;
+  --accent-foreground: #f5f5f4;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --warning: #f59e0b;
+  --warning-foreground: #ffffff;
+  --success: #10b981;
+  --success-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.08);
+  --input-background: #141416;
+  --switch-background: #27272a;
+  --ring: rgba(255, 255, 255, 0.2);
+  --chart-1: #818cf8;
+  --chart-2: #34d399;
+  --chart-3: #f472b6;
+  --chart-4: #fbbf24;
+  --chart-5: #a78bfa;
+  --sidebar: #0e0e10;
+  --sidebar-foreground: #f5f5f4;
+  --sidebar-primary: #f5f5f4;
+  --sidebar-primary-foreground: #0a0a0b;
+  --sidebar-accent: #1a1a1e;
+  --sidebar-accent-foreground: #f5f5f4;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: rgba(255, 255, 255, 0.2);
+
+  /* Vera theme tokens - Dark */
+  --vera-ink: #ffffff;
+  --vera-paper: #0a0a0b;
+  --vera-card-bg: #0e0e10;
+  --vera-header-bg: rgba(10, 10, 11, 0.8);
+  --vera-tooltip-bg: #141416;
+  --vera-tooltip-text: #f5f5f4;
+  --vera-tooltip-border: rgba(255, 255, 255, 0.06);
+  --vera-teal-label: #2E6D6D;
+  --vera-teal-emphasis: #3D8B8B;
+  --vera-chart-grid: rgba(255, 255, 255, 0.03);
+  --vera-chart-axis: rgba(255, 255, 255, 0.15);
+  --vera-chart-line: rgba(255, 255, 255, 0.35);
+  --vera-chart-fill-start: rgba(255, 255, 255, 0.08);
+  --vera-chart-fill-end: rgba(255, 255, 255, 0);
+  --vera-chart-bar: rgba(255, 255, 255, 0.15);
+  --vera-ai-bg: #0c0c14;
+  --vera-ink-boost: 1;
+
+  /* Landing page semantic tokens - Dark (WCAG AA: ≥4.5:1 normal text) */
+  --vera-text-high: rgba(255,255,255,0.92);
+  --vera-text-mid: rgba(255,255,255,0.88);
+  --vera-text-low: rgba(255,255,255,0.75);
+  --vera-text-muted: rgba(255,255,255,0.65);
+  --vera-text-faint: rgba(255,255,255,0.55);
+  --vera-icon-subtle: rgba(255,255,255,0.60);
+  --vera-border-subtle: rgba(255,255,255,0.04);
+  --vera-border-light: rgba(255,255,255,0.15);
+  --vera-highlight-bg: rgba(255,255,255,0.92);
+  --vera-highlight-text: rgba(0,0,0,0.95);
+  --vera-hover-fill: rgba(255,255,255,0.92);
+  --vera-hero-bg: #111113;
+  --vera-hero-grad-solid: rgba(17,17,19,1);
+  --vera-hero-grad-mid: rgba(17,17,19,0.5);
+  --vera-hero-grad-end: rgba(17,17,19,0.2);
+
+  --shadow-2xs: 0px 4px 24px 0px hsl(0 0% 0% / 0.28);
+  --shadow-xs: 0px 4px 24px 0px hsl(0 0% 0% / 0.28);
+  --shadow-sm: 0px 4px 24px 0px hsl(0 0% 0% / 0.55), 0px 1px 2px -1px hsl(0 0% 0% / 0.55);
+  --shadow: 0px 4px 24px 0px hsl(0 0% 0% / 0.55), 0px 1px 2px -1px hsl(0 0% 0% / 0.55);
+  --shadow-md: 0px 4px 24px 0px hsl(0 0% 0% / 0.55), 0px 2px 4px -1px hsl(0 0% 0% / 0.55);
+  --shadow-lg: 0px 4px 24px 0px hsl(0 0% 0% / 0.55), 0px 4px 6px -1px hsl(0 0% 0% / 0.55);
+  --shadow-xl: 0px 4px 24px 0px hsl(0 0% 0% / 0.55), 0px 8px 10px -1px hsl(0 0% 0% / 0.55);
+  --shadow-2xl: 0px 4px 24px 0px hsl(0 0% 0% / 1.38);
+  color-scheme: dark;
+}
+
+/* Tailwind v4 Theme Configuration */
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-display: var(--font-display);
+  --font-tight: var(--font-tight);
+  --font-mono: var(--font-mono);
+
+  --shadow-2xs: var(--shadow-2xs);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+
+  --animate-fade-in: fadeIn 0.5s ease-out;
+  --animate-slide-in: slideIn 0.3s ease-out;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-pulse-slow: pulse 2s ease-in-out infinite;
+  --animate-spin-slow: spin 3s linear infinite;
+}
+
+/* Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: var(--font-size);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  letter-spacing: var(--tracking-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+#__next {
+  background-color: var(--background);
+  min-height: 100vh;
+}
+
+/* Vera typography base */
+h1 {
+  font-family: var(--font-serif);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.8;
+}
+
+h2 {
+  font-family: var(--font-serif);
+  font-weight: var(--font-weight-medium);
+  line-height: 2.0;
+}
+
+h3 {
+  font-weight: var(--font-weight-medium);
+  line-height: 2.25;
+}
+
+h4 {
+  font-weight: var(--font-weight-medium);
+  line-height: 2.25;
+}
+
+label {
+  font-weight: var(--font-weight-medium);
+  line-height: 1.5;
+}
+
+button {
+  font-weight: var(--font-weight-medium);
+  line-height: 1.5;
+}
+
+input {
+  font-weight: var(--font-weight-normal);
+  line-height: 1.5;
+}
+
+/* Vera document styling: official refs and memo width */
+.vera-doc-id {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  font-weight: 400;
+}
+
+/* Custom Utilities */
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+  }
+
+  .glass-card {
+    background: var(--card);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-blue {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-animated {
+    background: linear-gradient(270deg, var(--primary), var(--secondary), var(--chart-4), var(--primary));
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 6s ease infinite;
+  }
+
+  /* Primary gradient for buttons and backgrounds */
+  .gradient-primary {
+    background: linear-gradient(90deg, #3676DE 0%, #5A39D2 100%);
+  }
+
+  .gradient-primary-hover {
+    background: linear-gradient(90deg, #4080E8 0%, #6A49E2 100%);
+  }
+
+  /* Button with gradient */
+  .btn-gradient {
+    background: linear-gradient(90deg, #3676DE 0%, #5A39D2 100%);
+    color: white;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s ease;
+  }
+
+  .btn-gradient:hover {
+    background: linear-gradient(90deg, #4080E8 0%, #6A49E2 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(54, 118, 222, 0.4);
+  }
+
+  .btn-gradient:active {
+    transform: translateY(0);
+  }
+
+  .btn-gradient:disabled {
+    background: linear-gradient(90deg, #3676DE 0%, #5A39D2 100%);
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Sliding color-takeover hover: a fill that swipes in from the left,
+     paired with `transition-colors` on the element for the text flip. */
+  .btn-slide-white,
+  .btn-slide-black {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .btn-slide-white::before,
+  .btn-slide-black::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    transform: translateX(-101%);
+    transition: transform 500ms var(--ease-smooth);
+  }
+
+  .btn-slide-white:hover::before,
+  .btn-slide-white:focus-visible::before,
+  .btn-slide-black:hover::before,
+  .btn-slide-black:focus-visible::before {
+    transform: translateX(0);
+  }
+
+  .btn-slide-white::before {
+    background: #ffffff;
+  }
+
+  .btn-slide-black::before {
+    background: #000000;
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 20px color-mix(in srgb, var(--primary) 50%, transparent),
+                0 0 40px color-mix(in srgb, var(--primary) 30%, transparent);
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .animate-slideIn {
+    animation: slideIn 0.3s ease-out;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loaderFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.loader-enter {
+  animation: loaderFadeIn 0.2s ease-out forwards;
+}
+
+@keyframes pulseOpacity {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-pulse-opacity {
+  animation: pulseOpacity 1.5s ease-in-out infinite;
+}
+
+/* Icon glow effects */
+.icon-glow-primary {
+  box-shadow: 0 0 30px rgba(54, 118, 222, 0.4), 0 0 60px rgba(90, 57, 210, 0.3);
+}
+
+.icon-glow-secondary {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.4), 0 0 60px rgba(139, 92, 246, 0.2);
+}
+
+.icon-glow-success {
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.4), 0 0 60px rgba(16, 185, 129, 0.2);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* Focus Styles */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Respect reduced motion (a11y) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Selection */
+::selection {
+  background: color-mix(in srgb, var(--primary) 30%, transparent);
+}
+
+/* Background Patterns */
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--primary) 10%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--primary) 10%, transparent) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.bg-dots-pattern {
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--primary) 15%, transparent) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Card Hover Effect */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Dark mode preference detection */
+@media (prefers-color-scheme: dark) {
+  html:not(.light) {
+    color-scheme: dark;
+  }
+}
+
+/* Printable recovery sheet (components/vera/confidential/RecoveryCodeCard.tsx).
+   Never shown on screen; while printing, it is the only thing printed. */
+.vera-print-sheet { display: none; }
+@media print {
+  body.vera-printing-sheet > *:not(.vera-print-sheet) { display: none !important; }
+  body.vera-printing-sheet > .vera-print-sheet { display: block !important; }
+}

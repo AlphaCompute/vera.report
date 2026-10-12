@@ -1,0 +1,40 @@
+name: Checks
+
+on:
+  push:
+    branches: [main, staging]
+  pull_request:
+    branches: [main, staging]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            enclave/package-lock.json
+            qa/package-lock.json
+      - name: Install native test dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends curl ffmpeg poppler-utils util-linux openssl
+      - name: Install locked packages
+        run: |
+          npm ci --legacy-peer-deps --no-audit --no-fund
+          npm ci --prefix enclave --ignore-scripts --no-audit --no-fund
+          npm ci --prefix qa --no-audit --no-fund
+      - run: npm run build:enclave
+      - run: npm run typecheck
+      - name: Unit and service tests
+        run: npm test -- --maxWorkers=2 --watchAll=false

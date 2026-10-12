@@ -1,0 +1,213 @@
+{
+    "terms": {
+        "title": "Terms of Service",
+        "date": "Last updated: October 8, 2026",
+        "introduction": [
+            "These Terms of Service (these “Terms”) are an agreement between you and Alpha Compute Corp. (“Alpha Compute,” “we,” or “us”), which operates the VERA whistleblower reporting website and service (“VERA”). By selecting “Agree and continue” when these Terms are presented to you, you agree to these Terms. If you do not agree, do not use VERA.",
+            "Please read Section 11 carefully. Unless you opt out, it requires you to resolve disputes with us through individual arbitration instead of in court, and it waives class actions."
+        ],
+        "sections": [
+            {
+                "title": "1. WHAT VERA IS AND IS NOT",
+                "paragraphs": [
+                    "   1. What VERA Does. VERA lets you write a report about fraud or misconduct, protect it with encryption, and share it with law firms and other legal organizations you choose.",
+                    "   2. Not a Law Firm. Alpha Compute is not a law firm, and VERA does not give legal advice. Information on VERA about rights, deadlines, and government programs is general information only.",
+                    "   3. Not a Government Agency. VERA is not a government agency and is not affiliated with one. A VERA report is not a complaint, tip, or claim filed with any government agency, and using VERA does not submit anything to an agency or apply for any whistleblower award.",
+                    "   4. Deadlines. Using VERA does not stop, pause, or extend any legal deadline, and some deadlines are 30 days or fewer. If a deadline, retaliation, or legal protection matters to you, speak with a lawyer or the relevant agency promptly. Do not wait for a response.",
+                    "   5. Not for Emergencies. If you or someone else is in immediate danger, call 911."
+                ]
+            },
+            {
+                "title": "2. WHO CAN USE VERA",
+                "paragraphs": [
+                    "   1. Eligibility. You must be at least 18 years old and able to enter into a binding agreement. You may not use VERA if U.S. law, including U.S. sanctions law, bars you from doing so.",
+                    "   2. United States Only. VERA is intended only for people in the United States. Its information about rights and government resources covers U.S. law only.",
+                    "   3. Legal Organizations. These Terms apply to people who use VERA to make reports. Legal organizations use VERA under separate terms."
+                ]
+            },
+            {
+                "title": "3. YOUR REPORT",
+                "paragraphs": [
+                    "   1. Your Responsibility. Your “Report” is everything you submit through VERA, including your summary, your full report, your evidence, and your contact details. You are responsible for your Report. If you are not sure whether you can share a document or information, ask a lawyer before you include it. We do not review, verify, or investigate Reports.",
+                    "   2. What Not to Submit. You may not use VERA to:",
+                    "      1. submit classified information or any other material that is illegal to possess;",
+                    "      2. submit information you know is false, or impersonate another person (using an alias is fine);",
+                    "      3. harass, threaten, or harm anyone;",
+                    "      4. upload malware, interfere with VERA, or try to access VERA or its systems without permission; or",
+                    "      5. do anything else that is unlawful.",
+                    "   3. Your Right to Report. Nothing in these Terms limits your right to report possible violations of law to any government agency, to communicate with a lawyer, or to receive an award for information you give an agency. These Terms also do not apply to any claim you have against Alpha Compute or its affiliates arising from your work for them, even if the claim involves VERA.",
+                    "   4. Your Rights in Your Report. You keep all rights in your Report. You allow us to store, process, and transmit your Report only as needed to run VERA, to carry out your instructions, and to comply with the law."
+                ]
+            },
+            {
+                "title": "4. LEGAL ORGANIZATIONS",
+                "paragraphs": [
+                    "   1. You Choose. VERA lists independent law firms and other legal organizations (“Legal Organizations”). VERA administrators and approved Legal Organizations, including ones that join later, can see your summary, your submission time, and whether you included attachments. You decide which Legal Organizations can see the rest of your Report, and they can see it only as and for as long as you allow. Before you choose a Legal Organization, consider whether it might represent anyone your Report is about. We do not recommend, feature, or rank any Legal Organization or match you with one, and we do not receive any fee for sharing your Report with a Legal Organization.",
+                    "   2. They Are Independent. Legal Organizations are not our employees, agents, or partners, and we do not supervise their work. We are not responsible for what any Legal Organization does or does not do, including whether it reviews your Report, responds to you, takes your case, or protects your information.",
+                    "   3. No Attorney-Client Relationship. Sharing your Report with a Legal Organization does not by itself make it your lawyer. Any attorney-client relationship is between you and that Legal Organization, on terms you agree with it directly, and we are not a party to it.",
+                    "   4. Copies. A Legal Organization may keep copies of anything it can see, including your summary and submission details. Stopping its access, closing your Report, or deleting your Report will not remove those copies."
+                ]
+            },
+            {
+                "title": "5. ENCRYPTION, YOUR RECOVERY CODE, AND DELETION",
+                "paragraphs": [
+                    "   1. Encryption. Your browser encrypts your full report, your evidence, and your contact details on your device before they are sent. VERA is designed so that no one at Alpha Compute can read your full report, your evidence, or your contact details. Your summary, your submission time, and whether you included attachments are not encrypted (see Section 4).",
+                    "   2. Your Recovery Code. When you submit your Report, your browser gives you a recovery code, and you can also download a recovery file. You can use the code or file to open, manage, or delete your Report. If you choose to save report access in your browser, you can also open it there using your device passphrase or the private-device shortcut you selected. Saving only the report history check does not save access. Browser storage can be cleared or lost, so keep your code and recovery file somewhere safe even if you save access on a device. We never receive your recovery code, and we cannot reset or replace it. Anyone who has your code or file, or can unlock your saved access, can open, manage, or delete your Report, and we cannot tell them apart from you. Do not keep them on a device or account your employer controls. If you lose your code, your recovery file, and all usable saved access, you will not be able to open, manage, or delete your Report, including stopping a Legal Organization’s access.",
+                    "   3. How Long We Keep Your Report. You can delete your Report at any time, or set a timer to delete it automatically. If you do neither and do not close your Report, we keep your Report indefinitely, subject to Section 7. Closing your Report ends Legal Organizations’ access through VERA, and we delete it and its submission detailed 90 days later, unless deleted sooner. Deleted Reports are cleared from our backups within 35 days of deletion.",
+                    "   4. Your Device and Contact Details. You are responsible for the security of your device, your network, your recovery code, and your contact method. We do not contact you directly except to respond to messages you send us or to provide notices required by law. We will never ask for your recovery code or recovery file.",
+                    "   5. Legal Demands. If we receive a subpoena, court order, or other legal demand, we may be required to provide information we hold. VERA is designed so that we cannot read your encrypted full report, evidence, or contact details. We can read your summary, your submission time, and whether you included attachments. If the law requires us to preserve information, we may have to keep it for as long as the law requires, even if you delete your Report or your timer runs out.",
+                    "   6. No Perfect Security. No technology is perfectly secure. We cannot guarantee that your Report, your identity, or your use of VERA will never be exposed, including through your device or network, the contents of your Report, or a Legal Organization you share it with.",
+                    "   7. Privacy Notice. Our Privacy Notice explains what information VERA receives and how it is handled."
+                ]
+            },
+            {
+                "title": "6. LINKS AND RESOURCES",
+                "paragraphs": [
+                    "VERA links to government agencies and other websites for your convenience. We do not control those sites and are not responsible for them, and we cannot guarantee that the information or links on VERA are complete or current. Government award programs have their own eligibility rules."
+                ]
+            },
+            {
+                "title": "7. CHANGES TO VERA",
+                "paragraphs": [
+                    "We may change, suspend, or stop VERA, or any part of it, at any time. If we decide to shut VERA down, we will try to post notice on VERA at least 30 days in advance. Further if we shut VERA down, we will delete all Reports, subject to Section 5.5. We may also remove a Report or restrict access to it if the law requires it, or if we have good reason to believe it contains malware, threats of violence, or material that is illegal to possess. We will never remove a Report because of who or what it is about, including Alpha Compute."
+                ]
+            },
+            {
+                "title": "8. OWNERSHIP",
+                "paragraphs": [
+                    "VERA, including its software, design, and the VERA name, belongs to Alpha Compute or its licensors. These Terms give you the right to use VERA as they allow, and no other rights in it."
+                ]
+            },
+            {
+                "title": "9. DISCLAIMERS",
+                "paragraphs": [
+                    "VERA is provided “as is” and “as available.” To the fullest extent permitted by law, we disclaim all warranties, express or implied, including warranties of merchantability, fitness for a particular purpose, title, and non-infringement. We do not promise that VERA will be available, uninterrupted, or error-free; that any Legal Organization will review your Report, respond to you, or take your case; or that using VERA will protect you from retaliation or lead to any recovery or award. We are not responsible for the acts or omissions of any Legal Organization, employer, government agency, or other third party."
+                ]
+            },
+            {
+                "title": "10. LIMITATION OF LIABILITY",
+                "paragraphs": [
+                    "    1. Excluded Damages. To the fullest extent permitted by law, Alpha Compute, its affiliates, and their directors, officers, employees, and agents will not be liable for any indirect, incidental, special, consequential, exemplary, or punitive damages, or for any loss of data, profits, or revenue, arising out of or relating to VERA or these Terms, even if told such damages were possible.",
+                    "    2. Cap. The total liability of Alpha Compute, its affiliates, and their directors, officers, employees, and agents for all claims arising out of or relating to VERA or these Terms will not exceed one hundred U.S. dollars (US$100).",
+                    "    3. What Is Not Limited. Nothing in these Terms limits or excludes liability for fraud, gross negligence, willful misconduct, or any other liability that cannot be limited or excluded by law."
+                ]
+            },
+            {
+                "title": "11. DISPUTES",
+                "paragraphs": [
+                    "    1. Talk to Us First. Before starting an arbitration or lawsuit, you and we will try to resolve any dispute between us informally for 60 days after one side sends the other a written notice describing it. To the extent permitted by law, any applicable limitation period for that dispute is paused during those 60 days. Either side may file sooner if necessary to preserve a deadline or seek temporary relief to prevent immediate harm. This process does not restrict communications with government agencies. You can send your notice to legal@alphacompute.ai.",
+                    "    2. Arbitration. Any dispute arising out of or relating to VERA or these Terms that is not resolved informally will be decided by binding individual arbitration administered by JAMS under its applicable rules and its Consumer Minimum Standards. The arbitrator decides all issues, including whether a dispute must be arbitrated, except that a court decides whether an agreement to arbitrate was formed or exists, any question about Sections 3.3, 11.4, and 11.5, and any issue that applicable law requires a court to decide. The arbitration will be held by video or, if you prefer, in the county where you live. We will pay all JAMS fees and the arbitrator’s fees, except the consumer filing fee permitted by JAMS if you start the arbitration, subject to any applicable fee waiver or lower limit required by law. If we start the arbitration, we will pay those fees in full. The arbitrator may award any relief available under applicable law, subject to enforceable limits in these Terms and Section 11.5. Nothing in this Section requires arbitration or waives a right to bring a joint, class, or collective action where applicable law prohibits doing so. By agreeing to arbitration, you and we each give up the right to sue in court and to a jury trial, except as this Section 11 allows.",
+                    "    3. Small Claims. Either of us may bring an individual claim in small claims court instead of arbitration.",
+                    "    4. No Class Actions. Subject to Section 11.5 and applicable law, you and we may bring claims against each other only individually, not as a plaintiff or class member in any class, collective, or representative proceeding, and the arbitrator may not consolidate claims or award relief to anyone other than the individual party. If this Section 11.4 is found unenforceable for a claim, that claim will be decided by a court and not in arbitration.",
+                    "    5. Public Injunctive Relief. Nothing in these Terms waives any right you may have to seek public injunctive relief under applicable law. A court, rather than an arbitrator, will decide any request for that relief. To the extent permitted by law, the court may stay that request until any arbitration of the remaining claims is completed.",
+                    "    6. Opting Out. You may opt out of this Section 11 by emailing legal@alphacompute.aiwithin 30 days after you first select “Agree and continue” and saying that you opt out of arbitration. You do not need to tell us anything about your Report. Keep a copy of your email."
+                ]
+            },
+            {
+                "title": "12. GENERAL",
+                "paragraphs": [
+                    "    1. Governing Law. New York law governs these Terms, without regard to its conflict-of-law rules. The Federal Arbitration Act governs Section 11.",
+                    "    2. Courts. Except as Section 11.3 allows, any claim that is not arbitrated will be brought only in the state or federal courts in New York County, New York, and you and we consent to their jurisdiction.",
+                    "    3. Changes to These Terms. We may update these Terms by posting a new version on VERA with a new “Last updated” date. Before a change that materially affects your rights or obligations applies to you, we will provide conspicuous notice on VERA and ask you to accept the updated Terms affirmatively. Until you do, the version you previously accepted continues to govern your use of VERA. Minor changes that do not materially affect your rights or obligations may take effect when posted. No change applies retroactively to a dispute that arose before the change took effect for you.",
+                    "    4. Notices and Questions. Send notices and questions to us at legal@alphacompute.ai. We will post notices to you on VERA, unless we are replying to a message you sent us or the law requires another method of notice.",
+                    "    5. Transfer. You may not transfer these Terms. We may transfer them to an affiliate or to anyone who takes over VERA.",
+                    "    6. Other Terms. These Terms are the entire agreement between you and us about VERA. No one other than you and us has rights under these Terms, except that those Section 10 protects may rely on it. If any part of these Terms is found unenforceable, the rest stays in effect, except as Section 11.4 provides. If we do not enforce part of these Terms, that is not a waiver. Any part of these Terms that by its nature should continue after you stop using VERA will continue. “Including” means “including without limitation.”"
+                ]
+            }
+        ]
+    },
+    "privacy": {
+        "title": "Privacy Notice",
+        "date": "Last updated and effective: October 8, 2026",
+        "introduction": [
+            "This Privacy Notice explains what information Alpha Compute Corp. (“Alpha Compute,” “we,” or “us”) receives when you use the VERA whistleblower reporting website and service (“VERA”), how we use it, and the choices you have. Terms like “Report” and “Legal Organization” mean what they mean in our Terms of Service.",
+            "The short version: Your browser encrypts your full report, your evidence, and your contact details before they reach us, and VERA is designed so that no one at Alpha Compute can read them. Your short summary, your submission time, and whether you included attachments are not encrypted: VERA administrators and approved Legal Organizations can read them. We do not store the IP address you use to connect to VERA, we do not use analytics, advertising, or tracking tools, and we do not contact you directly except to respond to messages you send us or to provide notices required by law."
+        ],
+        "sections": [
+            {
+                "title": "1. WHAT VERA RECEIVES",
+                "paragraphs": [
+                    "   1. Your Report. Your Report includes your summary, your full report, your evidence, and your contact details. Your browser encrypts your full report, your evidence (including file names and types), and your contact details on your device before they are sent. VERA is designed so that no one at Alpha Compute can read them. Your summary is not encrypted: VERA administrators and approved Legal Organizations, including ones that join later, can read it, together with your submission time and whether you included attachments, so leave out anything that could identify you. We never receive your recovery code.",
+                    "   2. Submission Details. When you submit a Report, VERA records the submission time and whether you included attachments. These details are visible with your summary to VERA administrators and approved Legal Organizations, including ones that join later. VERA also records which Legal Organizations you choose and what each one can see and for how long, so that it can carry out your choices for the encrypted contents of your Report.",
+                    "   3. Connection Information. Like any website, VERA receives your IP address and the technical information your browser sends with each request, such as your browser type. We use it only to deliver VERA to you and to keep VERA running securely. We do not store the IP address you use to connect to VERA and we do not keep logs of this information.",
+                    "   4. Cookies and Browser Storage. VERA does not use cookies or similar tools to track you, and it has no analytics, advertising, or other third-party scripts. VERA does not store cookies or drafts in your browser. By default, it does not save report access or a report history check there. If you choose “Only the report history check,” it saves a small encrypted check value, without saving your recovery code, keys, or Report. If you choose to save report access, it stores an encrypted copy of the information needed to open your Report, protected by a device passphrase or a key kept in that browser. The “Keep unlocked on this private device” option lets anyone using that browser open your Report without entering a code. Browser storage can be cleared or lost, so keep your recovery code and recovery file separately. Your browser may still keep a record of your visit in its history, and any recovery file you download stays on your device.",
+                    "   5. Messages You Send Us. If you email us, we receive your email address and whatever you write. Email is not protected by VERA’s encryption and may reveal information about you, such as your IP address, so do not include details of your Report or your recovery code."
+                ]
+            },
+            {
+                "title": "2. HOW WE USE INFORMATION",
+                "paragraphs": [
+                    "   1. To Run VERA. We use information only to store your Report; to make your summary, your submission time, and whether you included attachments visible to VERA administrators and approved Legal Organizations; to deliver the encrypted contents of your Report to the Legal Organizations you choose, as you direct; to keep VERA working and secure; to answer messages you send us; to keep records of legal notices and resolve disputes; and to comply with the law.",
+                    "   2. What We Never Do. We do not sell your personal information or share it for advertising, and we do not use it to build profiles about you or to train AI models.",
+                    "   3. Sensitive Information. Your Report may include sensitive information about you or others. If you include it, we store and deliver it only as you direct and as this notice describes."
+                ]
+            },
+            {
+                "title": "3. WHO CAN SEE OR RECEIVE INFORMATION",
+                "paragraphs": [
+                    "   1. Legal Organizations. Approved Legal Organizations, including ones that join later, can see your summary, your submission time, and whether you included attachments. A Legal Organization you choose can see the rest of your Report only as and for as long as you allow. Once a Legal Organization can see information, its own privacy practices and legal duties apply to it, not this notice, and it may keep copies.",
+                    "   2. Service Providers and Advisers. Our service providers, such as our cloud hosting and email providers, and our professional advisers may use information only to serve us.",
+                    "   3. Legal Demands. We may disclose information when the law requires it, such as in response to a subpoena or court order. VERA is designed so that we cannot read your encrypted full report, evidence, or contact details. We can read your summary, your submission time, and whether you included attachments. We cannot provide the IP address you used to connect to VERA because we do not store it.",
+                    "   4. If VERA Changes Hands. If we transfer VERA to an affiliate or a new owner, the information VERA holds will go with it, and this notice will keep applying to that information unless it is changed as Section 10 describes.",
+                    "   5. No One Else. We do not disclose personal information to anyone else, including for their own marketing, except to an arbitrator or court in a dispute between you and us.",
+                    "   6. Other Sites. VERA links to government agencies and other websites. Their own privacy practices apply when you visit them."
+                ]
+            },
+            {
+                "title": "4. HOW LONG WE KEEP INFORMATION",
+                "paragraphs": [
+                    "   1. Your Report. We keep your Report and its submission details until you delete your Report or a deletion timer you set runs out. If you do neither and do not close your Report, we keep them indefinitely, unless we remove your Report as our Terms of Service allow. Closing your Report does not delete it immediately; we delete it and its submission detailed 90 days later, unless deleted sooner. Deleted Reports are cleared from our backups within 35 days. If we shut VERA down, we will delete all Reports.",
+                    "   2. Connection Information. We do not store the IP address you use to connect to VERA and we do not keep logs of connection information.",
+                    "   3. Messages. We keep messages you send us for as long as we need them to respond, and longer if they are legal notices, such as an arbitration opt-out, that we need to keep a record of.",
+                    "   4. Legal Holds. If the law requires us to preserve information, we keep it for as long as the law requires, even if you delete your Report or your timer runs out."
+                ]
+            },
+            {
+                "title": "5. SECURITY",
+                "paragraphs": [
+                    "Your browser encrypts your full report, your evidence, and your contact details on your device, and VERA runs inside a secure enclave designed so that Alpha Compute staff cannot get inside it or tamper with it. Before your Report is submitted, a check confirms that your browser is connected to that enclave, and if the check fails, the submission does not go through. No system is perfectly secure, so please also follow the steps on our homepage to protect yourself. If a security incident affects your information, we will give any notice the law requires, and because we cannot read your contact details, that will include posting a notice on VERA."
+                ]
+            },
+            {
+                "title": "6. YOUR CHOICES AND RIGHTS",
+                "paragraphs": [
+                    "   1. Managing Your Report. With your recovery code, recovery file, or usable saved report access on your device, you can open your Report, add evidence, change or stop a Legal Organization’s access, close your Report, and delete it or set a timer to delete it. We cannot recover your code or decrypt your full report, evidence, or contact details for you. Your summary and submission details remain readable as described in Section 1. Keep your recovery code and recovery file even if you save access on a device: browser storage can be cleared or lost.",
+                    "   2. Privacy Rights. Depending on where you live, you may have the right to know what personal information we hold about you, where we got it, and why we collected it, to get a copy of it, to correct it, to delete it, to learn which third parties we have disclosed it to, and to opt out of its sale or its use for targeted advertising or profiling. We do not sell personal information or use it for targeted advertising or profiling, so there is nothing to opt out of. To make a request, email legal@alphacompute.ai. An authorized agent may make a request for you with your signed permission. We will respond within the time the law requires, and we will not treat you differently or retaliate against you for making a request.",
+                    "   3. Verifying Requests. VERA does not require reporters to create accounts. We cannot read your encrypted full report, evidence, or contact details, or search that encrypted content for information about anyone mentioned in it. We can read summaries and submission details, and a summary may contain identifying information supplied by its author. Use your recovery code, recovery file, or usable saved report access to see, change, or delete your Report yourself, and never send your code to us. To verify an emailed request, we will reply to the address it came from.",
+                    "   4. Appeals. If we deny your request, you can appeal by replying to our answer with “Appeal” in the subject line. If you disagree with our decision on your appeal, you can contact your state attorney general.",
+                    "   5. Do Not Track and Global Privacy Control. VERA does not track you across websites and does not let anyone else do so through VERA. We treat every visitor as opted out of sale and targeted advertising, so Do Not Track and Global Privacy Control signals do not change how VERA works."
+                ]
+            },
+            {
+                "title": "7. CALIFORNIA DISCLOSURES AND NOTICE AT COLLECTION",
+                "paragraphs": [
+                    "VERA collects the following categories of personal information, as California law defines them: identifiers (your contact details, in encrypted form; the IP address you use to connect to VERA, which we receive but do not store; and your email address, if you email us); internet or other electronic network activity information (the technical information your browser sends, which we do not store); and, depending on what you include in your Report or a message to us, any other category, including commercial information, professional or employment-related information, audio or visual information, characteristics of protected classifications, and sensitive personal information. We collect this information from you or, for information about other people in a Report, from the person who submits it. We use it only to store Reports; make summaries, submission times, and whether attachments were included visible to VERA administrators and approved Legal Organizations; deliver encrypted report contents as users direct; keep VERA working and secure; answer messages; keep records of legal notices; resolve disputes; and comply with the law. Apart from any disclosure the law requires, we disclose these categories for a business purpose only to our service providers and professional advisers, to run VERA and advise us, and we make report summaries, submission times, and whether attachments were included visible to VERA administrators and approved Legal Organizations, including ones that join later. We disclose the full report, evidence, and contact details only to the Legal Organizations users choose, as they direct. We keep Reports until they are deleted or a deletion timer runs out, and otherwise indefinitely, except that closed Reports and their submission details are deleted 90 days after closing; we do not store the IP addresses people use to connect to VERA or keep connection logs; and we keep messages only as long as we need them to respond, or longer if they are legal notices. We do not sell or share personal information and have not done so, and we do not use or disclose sensitive personal information for any purpose that would give you a right to limit it."
+                ]
+            },
+            {
+                "title": "8. CHILDREN",
+                "paragraphs": [
+                    "VERA is for people 18 and older and is not directed to children. We do not knowingly collect personal information from children under 13, and we do not sell or share the personal information of anyone under 16."
+                ]
+            },
+            {
+                "title": "9. UNITED STATES ONLY",
+                "paragraphs": [
+                    "VERA is intended only for people in the United States. We store VERA’s data in the United States."
+                ]
+            },
+            {
+                "title": "10. CHANGES TO THIS NOTICE",
+                "paragraphs": [
+                    "We may update this notice by posting a new version on VERA with a new date at the top. Because we do not contact users, if a change is material, we will post a notice on VERA before it takes effect, and we will not apply it to information we already hold without your consent."
+                ]
+            },
+            {
+                "title": "11. CONTACT US",
+                "paragraphs": [
+                    "Questions and requests about this notice can be sent to Alpha Compute Corp. at legal@alphacompute.ai."
+                ]
+            }
+        ]
+    }
+}

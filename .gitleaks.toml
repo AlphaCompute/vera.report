@@ -1,0 +1,94 @@
+# Only exact, reviewed synthetic test values are excepted; every other value is scanned.
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Reviewed synthetic test fixture or expected download filename"
+condition = "AND"
+targetRules = ["generic-api-key"]
+paths = ['''(?:^|/)\.env\.test$''']
+regexes = ['''^test_jwt_secret_key_123456$''']
+
+[[allowlists]]
+description = "Reviewed synthetic test fixture or expected download filename"
+condition = "AND"
+targetRules = ["generic-api-key"]
+paths = ['''(?:^|/)\.env\.test$''']
+regexes = ['''^test_encryption_key_32_characters$''']
+
+[[allowlists]]
+description = "Reviewed synthetic test fixture or expected download filename"
+condition = "AND"
+targetRules = ["generic-api-key"]
+paths = ['''(?:^|/)qa/local\-tests/confidential\-administration\.spec\.ts$''']
+regexes = ['''^vera\-organization\-epoch\-2\-PRIVATE\.txt$''']
+
+[[allowlists]]
+description = "Reviewed synthetic test fixture or expected download filename"
+condition = "AND"
+targetRules = ["generic-api-key"]
+paths = ['''(?:^|/)tests/unit/api/attestedReporterVerification\.test\.ts$''']
+regexes = ['''^VRA\-0123456789ABCDEF$''']
+
+[[allowlists]]
+description = "Reviewed synthetic test fixture or expected download filename"
+condition = "AND"
+targetRules = ["generic-api-key"]
+paths = ['''(?:^|/)tests/unit/api/serverWithoutMidnight\.test\.ts$''']
+regexes = ['''^synthetic\-internal\-secret\-with\-32\-characters$''']
+
+[[allowlists]]
+description = "Reviewed synthetic test fixture or expected download filename"
+condition = "AND"
+targetRules = ["generic-api-key"]
+paths = ['''(?:^|/)tests/integration/services/mvpCoreLoop\.test\.ts$''']
+regexes = ['''^synthetic\-internal\-secret\-with\-at\-least\-32\-characters$''']
+
+[[allowlists]]
+description = "Reviewed synthetic test fixture or expected download filename"
+condition = "AND"
+targetRules = ["generic-api-key"]
+paths = ['''(?:^|/)tests/unit/api/whistleblowerConfidentialIsolation\.test\.ts$''']
+regexes = ['''^Q0FTRS1TRUNSRVQtVEhBVC1NVVNULU5FVkVSLUxFQVZF$''']
+
+[[allowlists]]
+description = "Reviewed synthetic test fixture or expected download filename"
+condition = "AND"
+targetRules = ["generic-api-key"]
+paths = ['''(?:^|/)tests/unit/api/whistleblowerConfidentialIsolation\.test\.ts$''']
+regexes = ['''^VRA\-0123456789ABCDEF$''']
+
+[[allowlists]]
+description = "Reviewed synthetic test fixture or expected download filename"
+condition = "AND"
+targetRules = ["jwt"]
+paths = ['''(?:^|/)tests/unit/privacy/confidentialRedaction\.test\.ts$''']
+regexes = ['''^eyJhbGciOiJSUzI1NiJ9\.eyJzdWIiOiJhdXRoMHxsYXd5ZXIifQ\.c2lnbmF0dXJlLXNlbnRpbmVs$''']
+
+[[allowlists]]
+description = "Reviewed synthetic test fixture or expected download filename"
+condition = "AND"
+targetRules = ["generic-api-key"]
+paths = ['''(?:^|/)tests/unit/services/evidenceStorageCipher\.test\.ts$''']
+regexes = ['''^AAECAwQFBgcICQoLDA0ODw==$''']
+
+[[allowlists]]
+description = "Reviewed synthetic test fixture or expected download filename"
+condition = "AND"
+targetRules = ["generic-api-key"]
+paths = ['''(?:^|/)tests/unit/services/dissemination/recipientCapability\.test\.ts$''']
+regexes = ['''^VRA\-ABCDEF0123456789$''']
+
+[[allowlists]]
+description = "Reviewed synthetic test fixture or expected download filename"
+condition = "AND"
+targetRules = ["generic-api-key"]
+paths = ['''(?:^|/)tests/unit/utils/environmentValidation\.test\.ts$''']
+regexes = ['''^synthetic\-internal\-secret\-with\-32\-characters$''']
+
+[[allowlists]]
+description = "Reviewed synthetic test fixture or expected download filename"
+condition = "AND"
+targetRules = ["generic-api-key"]
+paths = ['''(?:^|/)tests/unit/utils/environmentValidation\.test\.ts$''']
+regexes = ['''^synthetic\-reward\-secret\-with\-32\-characters$''']

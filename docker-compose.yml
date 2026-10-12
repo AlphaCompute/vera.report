@@ -1,0 +1,119 @@
+# Docker Compose for Local Development
+# Whistleblower App - Dual Server Architecture
+
+services:
+  # Next.js Frontend
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: frontend
+    env_file:
+      - .env.frontend.local
+    container_name: whistleblower-frontend
+    profiles: [split]
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      - NODE_ENV=production
+      - BACKEND_URL=http://backend:3001
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - app-network
+      - egress
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: backend
+    container_name: whistleblower-backend
+    profiles: [split]
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+    ports:
+      - "127.0.0.1:3001:3001"
+    env_file:
+      - .env.backend.local
+    environment:
+      - NODE_ENV=development
+      - API_PORT=3001
+    restart: unless-stopped
+    networks:
+      - app-network
+      - egress
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Development - runs both servers
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: whistleblower-dev
+    init: true
+    deploy:
+      resources:
+        limits:
+          memory: 6G
+    ports:
+      - "127.0.0.1:3000:3000"
+      - "127.0.0.1:3001:3001"
+    # This combined development server needs both application scopes.
+    env_file:
+      - .env.backend.local
+      - .env.frontend.local
+    environment:
+      - NODE_ENV=development
+      - API_PORT=3001
+      - BACKEND_URL=http://localhost:3001
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: ["npx", "concurrently", "--kill-others", "npm run start:dev", "npm run dev -- --hostname 0.0.0.0"]
+    networks:
+      - app-network
+      - egress
+    profiles:
+      - development
+
+  # LocalStack (local AWS SES for email testing)
+  localstack:
+    # LocalStack 4.10.0 community image; newer releases require an account token.
+    image: localstack/localstack:4.10.0@sha256:a65ee2a9d45a7a34a1f1faae515d2e577ce11210312c077700ccc82daefec238
+    container_name: vera-localstack
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 1G
+    ports:
+      - "127.0.0.1:4566:4566"
+    environment:
+      - SERVICES=ses
+      - DEBUG=0
+      - LOCALSTACK_ACKNOWLEDGE_ACCOUNT_REQUIREMENT=1
+    networks:
+      - app-network
+    profiles:
+      - development
+
+networks:
+  app-network:
+    driver: bridge
+    internal: true
+  egress:
+    driver: bridge

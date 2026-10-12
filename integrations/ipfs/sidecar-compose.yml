@@ -1,0 +1,46 @@
+name: vera-ipfs-sidecar-review
+# The API task's Kubo sidecar image, as ECS runs it. `ipfs` uses bridge mode
+# settings (IPFS_PROXY_BIND=0.0.0.0, reached by name), `replacement` is a fresh
+# node with an empty repository, and `archive` is the S3 source of truth.
+services:
+  ipfs:
+    build:
+      context: ../../enclave
+      target: ipfs-sidecar
+    image: vera-ipfs:local
+    environment: &sidecar_environment
+      IPFS_PROXY_BIND: 0.0.0.0
+    ports: ['127.0.0.1:15022:15002']
+    read_only: true
+    tmpfs: ['/data/ipfs:uid=1000,gid=1000,mode=0700', '/tmp']
+    mem_limit: 512m
+    pids_limit: 128
+    cap_drop: [ALL]
+    security_opt: ['no-new-privileges:true']
+    healthcheck: &sidecar_health
+      test: ['CMD', 'node', '/app/dist/ipfs-proxy.js', 'healthcheck']
+      interval: 3s
+      timeout: 2s
+      retries: 30
+  replacement:
+    image: vera-ipfs:local
+    environment: *sidecar_environment
+    ports: ['127.0.0.1:15023:15002']
+    read_only: true
+    tmpfs: ['/data/ipfs:uid=1000,gid=1000,mode=0700', '/tmp']
+    mem_limit: 512m
+    pids_limit: 128
+    cap_drop: [ALL]
+    security_opt: ['no-new-privileges:true']
+    healthcheck: *sidecar_health
+  archive:
+    image: localstack/localstack:4.10.0
+    environment:
+      SERVICES: s3
+    ports: ['127.0.0.1:15476:4566']
+    mem_limit: 512m
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:4566/_localstack/health']
+      interval: 3s
+      timeout: 2s
+      retries: 30

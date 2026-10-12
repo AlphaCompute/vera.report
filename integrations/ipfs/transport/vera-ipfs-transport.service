@@ -1,0 +1,27 @@
+[Unit]
+Description=VERA enclave IPFS Unix transport
+After=nitro-enclaves-allocator.service
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Service]
+Type=simple
+Environment=VERA_IPFS_TRANSPORT_ENABLED=0
+EnvironmentFile=-/etc/vera-ipfs-transport.env
+ExecStart=/usr/local/libexec/vera-ipfs-host-relay
+Restart=on-failure
+RestartPreventExitStatus=78
+RestartSec=5
+TimeoutStopSec=10
+KillMode=control-group
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/run /var/log/nitro_enclaves
+RestrictAddressFamilies=AF_UNIX AF_VSOCK
+StandardOutput=null
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

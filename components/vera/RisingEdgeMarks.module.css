@@ -1,0 +1,48 @@
+.layer {
+    --feed-width: min(var(--tick-w), calc(var(--gutter) - 16px));
+    --feed-strip: max(calc(var(--feed-width) + 8px), min(var(--gutter), calc(var(--pad, 40px) * 0.85)));
+    position: absolute;
+    inset: 0;
+    z-index: 40;
+    overflow: hidden;
+    pointer-events: none;
+    mix-blend-mode: difference;
+}
+
+.row {
+    position: absolute;
+    inset-inline: 0;
+}
+.bar {
+    position: absolute;
+    width: var(--feed-width);
+    height: var(--tick-h);
+    background: #fff;
+    transform: scaleX(var(--punch-scale, 0));
+}
+.bar[data-side='left'] {
+    left: calc((var(--feed-strip) - var(--feed-width)) / 2);
+}
+.bar[data-side='right'] {
+    right: calc((var(--feed-strip) - var(--feed-width)) / 2);
+}
+
+.staticMarks {
+    visibility: hidden;
+}
+:global([inert]) .layer {
+    visibility: hidden;
+}
+@media (max-width: 767px) {
+    .layer {
+        display: none;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .layer {
+        display: none;
+    }
+    .staticMarks {
+        visibility: visible;
+    }
+}

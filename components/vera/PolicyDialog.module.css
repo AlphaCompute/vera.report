@@ -1,0 +1,59 @@
+.trigger {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+
+.trigger:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+}
+
+/* Above the reporting notice when a policy is opened from its consent text. */
+.backdrop {
+    z-index: 120;
+}
+.panel {
+    z-index: 121;
+}
+
+.copy {
+    overflow-wrap: anywhere;
+}
+.copy p:not(:first-child) {
+    margin-top: 18px;
+    font-size: 17px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+.copy .date {
+    color: #55534d;
+    font-size: 14px;
+}
+.copy section {
+    margin-top: 32px;
+    border-top: 1px solid #bcbab3;
+    padding-top: 24px;
+}
+.copy h3 {
+    font:
+        600 18px/1.4 Arial,
+        Helvetica,
+        sans-serif;
+    letter-spacing: 0;
+}
+
+@media (max-width: 600px) {
+    .copy p:not(:first-child) {
+        font-size: 16px;
+    }
+    .copy h3 {
+        font-size: 17px;
+    }
+}

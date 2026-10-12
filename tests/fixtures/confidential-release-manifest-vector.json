@@ -1,0 +1,20 @@
+{
+  "repository": "https://github.com/AlphaCompute/vera",
+  "commit": "1234567890abcdef1234567890abcdef12345678",
+  "eif": "synthetic EIF bytes for the release manifest vector\n",
+  "configuration": "{\"format\":\"vera-confidential-configuration/v1\",\"protocolVersion\":\"vera-confidential-channel/v1\",\"dataFormatVersion\":\"vera-confidential-case/v1\",\"note\":\"synthetic vector\",\"legalIdentityPolicySha256\":null}",
+  "provenance": "{\"mediaType\":\"application/vnd.dev.sigstore.bundle.v0.3+json\",\"note\":\"synthetic vector, not a real signature\"}\n",
+  "measurements": {
+    "commit": "1234567890abcdef1234567890abcdef12345678",
+    "HashAlgorithm": "Sha384 { ... }",
+    "PCR0": "111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",
+    "PCR1": "222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222",
+    "PCR2": "333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333",
+    "eif_sha256": "37168a017ac6c62da479da6c5ba04749424904f48e8af27411fe386e42bff16e",
+    "docker_image_id": "sha256:abababababababababababababababababababababababababababababababab"
+  },
+  "expected": {
+    "canonical": "{\"format\":\"vera-confidential-release/v1\",\"sourceRepository\":\"https://github.com/AlphaCompute/vera\",\"sourceCommit\":\"1234567890abcdef1234567890abcdef12345678\",\"eifSha256\":\"37168a017ac6c62da479da6c5ba04749424904f48e8af27411fe386e42bff16e\",\"imageSha256\":\"abababababababababababababababababababababababababababababababab\",\"configurationSha256\":\"132d9703b6c1df719c471986d0709cea24e9b3d7fa1b7bace833337af77eb9d0\",\"provenanceSha256\":\"813b441965ba0fed0187a53ff980a6f39e9d22edbec776c4f86571fabb78e516\",\"protocolVersion\":\"vera-confidential-channel/v1\",\"dataFormatVersion\":\"vera-confidential-case/v1\",\"measurements\":{\"pcr0\":\"111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111\",\"pcr1\":\"222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222\",\"pcr2\":\"333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333\"}}",
+    "sha256": "09c1d4c4733776ea0978bd5c289f3374cdc075bd6e0de37f91f454f5c20db868"
+  }
+}

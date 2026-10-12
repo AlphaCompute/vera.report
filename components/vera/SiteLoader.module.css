@@ -1,0 +1,12 @@
+.logo {
+  animation: reveal 0.7s cubic-bezier(0.08, 0.82, 0.17, 1) both;
+}
+
+@keyframes reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0% 0 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo { animation: none; }
+}

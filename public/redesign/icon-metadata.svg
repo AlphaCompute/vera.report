@@ -1,0 +1,24 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="array-users 13" clip-path="url(#clip0_0_10)">
+<g id="Group 1547768677">
+<rect id="Rectangle 3466947" x="42" y="26" width="4" height="4" fill="black"/>
+<rect id="Rectangle 3466950" x="42" y="42" width="4" height="4" fill="black"/>
+<rect id="Rectangle 3466948" x="18" y="18" width="4" height="4" fill="black"/>
+<rect id="Rectangle 3466949" x="18" y="34" width="4" height="4" fill="black"/>
+<path id="Vector" d="M46 18H26V22H46V18Z" fill="black"/>
+<path id="Vector_2" d="M46 34H26V38H46V34Z" fill="black"/>
+<path id="Vector_3" d="M38 42H18V46H38V42Z" fill="black"/>
+<path id="Vector_4" d="M38 26H18V30H38V26Z" fill="black"/>
+</g>
+<line id="Line 31" x1="47.7658" y1="17.0627" x2="17.4132" y2="47.4152" stroke="black" stroke-width="4"/>
+<rect id="Rectangle 3466951" width="4" height="4" fill="black"/>
+<rect id="Rectangle 3466954" x="60" width="4" height="4" fill="black"/>
+<rect id="Rectangle 3466953" y="60" width="4" height="4" fill="black"/>
+<rect id="Rectangle 3466952" x="60" y="60" width="4" height="4" fill="black"/>
+</g>
+<defs>
+<clipPath id="clip0_0_10">
+<rect width="64" height="64" fill="white"/>
+</clipPath>
+</defs>
+</svg>

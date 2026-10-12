@@ -1,0 +1,6936 @@
+{
+  "POST /api/monitoring/client": {
+    "security": "public",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {}
+  },
+  "GET /health": {
+    "security": "public",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          },
+          "uptime": {
+            "type": "object",
+            "properties": {
+              "seconds": {
+                "type": "number"
+              },
+              "human": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "seconds",
+              "human"
+            ]
+          }
+        },
+        "required": [
+          "status",
+          "service",
+          "timestamp",
+          "uptime"
+        ]
+      }
+    }
+  },
+  "GET /api/monitoring/dataflow": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [
+      "dataType",
+      "destination",
+      "end",
+      "start",
+      "status",
+      "userId"
+    ],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "logs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "flowId": {
+                  "type": "string"
+                },
+                "endpoint": {
+                  "type": "string"
+                },
+                "method": {
+                  "type": "string"
+                },
+                "timestamp": {
+                  "type": "number"
+                },
+                "dataType": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": [
+                        "message"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "vault"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "user"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "asset"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "inheritance"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "system"
+                      ]
+                    }
+                  ]
+                },
+                "destination": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": [
+                        "mongodb"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "ipfs"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "memory"
+                      ]
+                    }
+                  ]
+                },
+                "status": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "start"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "success"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "failure"
+                      ]
+                    }
+                  ]
+                },
+                "metadata": {
+                  "type": "object",
+                  "properties": {
+                    "responseTime": {
+                      "type": "number"
+                    },
+                    "errorDetails": {
+                      "type": "string"
+                    },
+                    "dataSize": {
+                      "type": "number"
+                    }
+                  },
+                  "additionalProperties": {}
+                }
+              },
+              "required": [
+                "flowId",
+                "endpoint",
+                "method",
+                "timestamp",
+                "dataType",
+                "destination",
+                "status",
+                "metadata"
+              ]
+            }
+          },
+          "total": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "success",
+          "logs",
+          "total"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/monitoring/metrics": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "metrics": {
+            "type": "object",
+            "properties": {
+              "totalFlows": {
+                "type": "number"
+              },
+              "successCount": {
+                "type": "number"
+              },
+              "errorCount": {
+                "type": "number"
+              },
+              "successRate": {
+                "type": "number"
+              },
+              "avgResponseTime": {
+                "type": "number"
+              },
+              "dataTypeBreakdown": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": {
+                  "type": "number"
+                }
+              },
+              "destinationBreakdown": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": {
+                  "type": "number"
+                }
+              },
+              "lastUpdated": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "totalFlows",
+              "successCount",
+              "errorCount",
+              "successRate",
+              "avgResponseTime",
+              "dataTypeBreakdown",
+              "destinationBreakdown",
+              "lastUpdated"
+            ]
+          }
+        },
+        "required": [
+          "success",
+          "metrics"
+        ]
+      }
+    }
+  },
+  "POST /api/monitoring/clear": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "message"
+        ]
+      }
+    }
+  },
+  "POST /api/whistleblower/analyze": {
+    "security": "public",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "camera": {
+                  "type": "object",
+                  "properties": {
+                    "make": {
+                      "type": "string"
+                    },
+                    "model": {
+                      "type": "string"
+                    },
+                    "lens": {
+                      "type": "string"
+                    },
+                    "software": {
+                      "type": "string"
+                    },
+                    "serialNumber": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "gps": {
+                  "type": "object",
+                  "properties": {
+                    "latitude": {
+                      "type": "number"
+                    },
+                    "longitude": {
+                      "type": "number"
+                    },
+                    "altitude": {
+                      "type": "number"
+                    },
+                    "locationName": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "datetime": {
+                  "type": "object",
+                  "properties": {
+                    "taken": {
+                      "type": "string"
+                    },
+                    "digitized": {
+                      "type": "string"
+                    },
+                    "modified": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "device": {
+                  "type": "object",
+                  "properties": {
+                    "owner": {
+                      "type": "string"
+                    },
+                    "artist": {
+                      "type": "string"
+                    },
+                    "copyright": {
+                      "type": "string"
+                    },
+                    "hostname": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "document": {
+                  "type": "object",
+                  "properties": {
+                    "author": {
+                      "type": "string"
+                    },
+                    "creator": {
+                      "type": "string"
+                    },
+                    "producer": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "subject": {
+                      "type": "string"
+                    },
+                    "company": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "file": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "size": {
+                      "type": "number"
+                    },
+                    "dimensions": {
+                      "type": "object",
+                      "properties": {
+                        "width": {
+                          "type": "number"
+                        },
+                        "height": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "width",
+                        "height"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "type",
+                    "size"
+                  ]
+                },
+                "summary": {
+                  "type": "object",
+                  "properties": {
+                    "hasLocation": {
+                      "type": "boolean"
+                    },
+                    "hasDeviceInfo": {
+                      "type": "boolean"
+                    },
+                    "hasPersonalInfo": {
+                      "type": "boolean"
+                    },
+                    "hasDates": {
+                      "type": "boolean"
+                    },
+                    "riskLevel": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "low"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "medium"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "high"
+                          ]
+                        }
+                      ]
+                    },
+                    "itemCount": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "hasLocation",
+                    "hasDeviceInfo",
+                    "hasPersonalInfo",
+                    "hasDates",
+                    "riskLevel",
+                    "itemCount"
+                  ]
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "category": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "location"
+                            ]
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "device"
+                            ]
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "personal"
+                            ]
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "datetime"
+                            ]
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "technical"
+                            ]
+                          }
+                        ]
+                      },
+                      "label": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      },
+                      "risk": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "low"
+                            ]
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "medium"
+                            ]
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "high"
+                            ]
+                          }
+                        ]
+                      },
+                      "icon": {
+                        "type": "string"
+                      },
+                      "stripByDefault": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "category",
+                      "label",
+                      "value",
+                      "risk",
+                      "icon",
+                      "stripByDefault"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "file",
+                "summary",
+                "items"
+              ]
+            }
+          },
+          "totalItems": {
+            "type": "number"
+          },
+          "highRiskCount": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "success",
+          "files",
+          "totalItems",
+          "highRiskCount"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/whistleblower/submit": {
+    "security": "public",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "trackingId": {
+            "type": "string"
+          },
+          "evidenceHash": {
+            "type": "string"
+          },
+          "zkProof": {
+            "type": "object",
+            "properties": {
+              "proofHash": {
+                "type": "string"
+              },
+              "nullifier": {
+                "type": "string"
+              },
+              "publicSignals": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "verified": {
+                "type": "boolean"
+              },
+              "proofType": {
+                "type": "string"
+              },
+              "contractAddress": {
+                "type": "string"
+              },
+              "txId": {
+                "type": "string"
+              },
+              "txHash": {
+                "type": "string"
+              },
+              "network": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "proofHash",
+              "nullifier",
+              "publicSignals",
+              "verified"
+            ],
+            "nullable": true
+          },
+          "proofStatus": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "attached"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "failed"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "not_applicable"
+                ]
+              }
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "trackingId",
+          "zkProof",
+          "proofStatus",
+          "message",
+          "status"
+        ]
+      },
+      "400": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "error": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "success",
+              "error"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "error": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "success",
+              "error",
+              "message"
+            ]
+          }
+        ]
+      },
+      "409": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "message"
+        ]
+      },
+      "422": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "message"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "message"
+        ]
+      },
+      "503": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "error": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "success",
+              "error",
+              "message"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "error": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": [
+                      "evidence_encryption_unavailable"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "evidence_upload_unavailable"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "evidence_upload_auth_unavailable"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "evidence_upload_quota_exceeded"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "evidence_key_write_unavailable"
+                    ]
+                  }
+                ]
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "success",
+              "error",
+              "message"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "GET /api/whistleblower/status/{trackingId}": {
+    "security": "public",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "trackingId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "evidenceHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipfsHash": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "urgency": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateOfIncident": {
+            "type": "string",
+            "nullable": true
+          },
+          "verification": {
+            "type": "object",
+            "properties": {
+              "credibilityScore": {
+                "type": "number"
+              },
+              "category": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "credibilityScore",
+              "category"
+            ],
+            "nullable": true
+          },
+          "zkProof": {
+            "type": "object",
+            "properties": {
+              "proofHash": {
+                "type": "string"
+              },
+              "verified": {
+                "type": "boolean"
+              },
+              "proofType": {
+                "type": "string"
+              },
+              "txHash": {
+                "type": "string"
+              },
+              "contractAddress": {
+                "type": "string"
+              },
+              "network": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "proofHash",
+              "verified"
+            ],
+            "nullable": true
+          },
+          "proofStatus": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "attached"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "failed"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "not_applicable"
+                ]
+              }
+            ]
+          },
+          "dissemination": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "entityId": {
+                  "type": "string"
+                },
+                "entityName": {
+                  "type": "string"
+                },
+                "state": {
+                  "type": "string"
+                },
+                "receipted": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "entityId",
+                "entityName",
+                "state",
+                "receipted"
+              ]
+            }
+          },
+          "relay": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "direction": {
+                  "type": "string"
+                },
+                "entityName": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "string"
+                },
+                "at": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "direction",
+                "body",
+                "at"
+              ]
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "success",
+          "trackingId",
+          "status",
+          "evidenceHash",
+          "category",
+          "urgency",
+          "location",
+          "dateOfIncident",
+          "verification",
+          "zkProof",
+          "proofStatus",
+          "dissemination",
+          "relay",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "404": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/whistleblower/status/{trackingId}/relay": {
+    "security": "public",
+    "bodyFields": [
+      "message"
+    ],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success"
+        ]
+      },
+      "400": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "error": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "success",
+              "error"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "error": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "success"
+            ]
+          }
+        ]
+      },
+      "404": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/whistleblower/status/access/rotate": {
+    "security": "public",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "trackingId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "trackingId"
+        ]
+      },
+      "404": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "409": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "503": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/whistleblower/evidence/{trackingId}/{filename}": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "404": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/whistleblower/reward-contact/{trackingId}": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "contactMethod": {
+                "type": "string",
+                "nullable": true
+              },
+              "contactValue": {
+                "type": "object",
+                "properties": {}
+              }
+            },
+            "required": [
+              "success",
+              "contactMethod",
+              "contactValue"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "contactMethod": {
+                "type": "string"
+              },
+              "contactValue": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "success",
+              "contactValue"
+            ]
+          }
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "404": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/whistleblower/narrative/{trackingId}": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "narrative": {
+                "type": "object",
+                "properties": {}
+              }
+            },
+            "required": [
+              "success",
+              "narrative"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "narrative": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "success"
+            ]
+          }
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "404": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/whistleblower/admin/reports/search": {
+    "security": "internal",
+    "bodyFields": [
+      "query"
+    ],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "reports": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string"
+                    },
+                    "reportId": {
+                      "type": "string"
+                    },
+                    "trackingId": {
+                      "type": "string"
+                    },
+                    "category": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "submittedAt": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "priority": {
+                      "type": "string"
+                    },
+                    "aiClassification": {
+                      "type": "object",
+                      "properties": {
+                        "authenticity": {
+                          "type": "number"
+                        },
+                        "manipulationDetected": {
+                          "type": "boolean"
+                        },
+                        "flags": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "analyzedAt": {
+                          "type": "string"
+                        },
+                        "model": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "authenticity",
+                        "manipulationDetected",
+                        "flags",
+                        "analyzedAt",
+                        "model"
+                      ]
+                    },
+                    "evidence": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "size": {
+                            "type": "string"
+                          },
+                          "ipfsHash": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "encryptedUrl": {
+                            "type": "string",
+                            "nullable": true
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "type",
+                          "size",
+                          "ipfsHash",
+                          "encryptedUrl"
+                        ]
+                      }
+                    },
+                    "activity": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "timestamp": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "type",
+                          "description",
+                          "timestamp"
+                        ]
+                      }
+                    },
+                    "urgency": {
+                      "type": "string"
+                    },
+                    "location": {
+                      "type": "string"
+                    },
+                    "dateOfIncident": {
+                      "type": "string"
+                    },
+                    "reward": {
+                      "type": "object",
+                      "properties": {
+                        "wantsReward": {
+                          "type": "boolean"
+                        },
+                        "contactMethod": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "wantsReward"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "_id",
+                    "reportId",
+                    "trackingId",
+                    "category",
+                    "description",
+                    "submittedAt",
+                    "status",
+                    "priority",
+                    "evidence",
+                    "activity"
+                  ]
+                }
+              },
+              "hasMore": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "reports",
+              "hasMore"
+            ]
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "data",
+          "source"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "503": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/whistleblower/admin/reports": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [
+      "limit",
+      "trackingId"
+    ],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "reports": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string"
+                    },
+                    "reportId": {
+                      "type": "string"
+                    },
+                    "trackingId": {
+                      "type": "string"
+                    },
+                    "category": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "submittedAt": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "priority": {
+                      "type": "string"
+                    },
+                    "aiClassification": {
+                      "type": "object",
+                      "properties": {
+                        "authenticity": {
+                          "type": "number"
+                        },
+                        "manipulationDetected": {
+                          "type": "boolean"
+                        },
+                        "flags": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "analyzedAt": {
+                          "type": "string"
+                        },
+                        "model": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "authenticity",
+                        "manipulationDetected",
+                        "flags",
+                        "analyzedAt",
+                        "model"
+                      ]
+                    },
+                    "evidence": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "size": {
+                            "type": "string"
+                          },
+                          "ipfsHash": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "encryptedUrl": {
+                            "type": "string",
+                            "nullable": true
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "type",
+                          "size",
+                          "ipfsHash",
+                          "encryptedUrl"
+                        ]
+                      }
+                    },
+                    "activity": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "timestamp": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "type",
+                          "description",
+                          "timestamp"
+                        ]
+                      }
+                    },
+                    "urgency": {
+                      "type": "string"
+                    },
+                    "location": {
+                      "type": "string"
+                    },
+                    "dateOfIncident": {
+                      "type": "string"
+                    },
+                    "reward": {
+                      "type": "object",
+                      "properties": {
+                        "wantsReward": {
+                          "type": "boolean"
+                        },
+                        "contactMethod": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "wantsReward"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "_id",
+                    "reportId",
+                    "trackingId",
+                    "category",
+                    "description",
+                    "submittedAt",
+                    "status",
+                    "priority",
+                    "evidence",
+                    "activity"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "reports"
+            ]
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "data",
+          "source"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/whistleblower/admin/stats": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "number"
+              },
+              "pending": {
+                "type": "number"
+              },
+              "reviewing": {
+                "type": "number"
+              },
+              "investigating": {
+                "type": "number"
+              },
+              "resolved": {
+                "type": "number"
+              },
+              "dismissed": {
+                "type": "number"
+              },
+              "critical": {
+                "type": "number"
+              },
+              "averageAuthenticity": {
+                "type": "number"
+              },
+              "scoredCount": {
+                "type": "number"
+              },
+              "scoreBands": {
+                "type": "object",
+                "properties": {
+                  "high": {
+                    "type": "number"
+                  },
+                  "medium": {
+                    "type": "number"
+                  },
+                  "flagged": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "high",
+                  "medium",
+                  "flagged"
+                ]
+              },
+              "byCategory": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": {
+                  "type": "number"
+                }
+              },
+              "byPriority": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": {
+                  "type": "number"
+                }
+              },
+              "recentTrend": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "date",
+                    "count"
+                  ]
+                }
+              },
+              "lastUpdated": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "total",
+              "pending",
+              "reviewing",
+              "investigating",
+              "resolved",
+              "dismissed",
+              "critical",
+              "averageAuthenticity",
+              "scoredCount",
+              "scoreBands",
+              "byCategory",
+              "byPriority",
+              "recentTrend",
+              "lastUpdated"
+            ]
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "data",
+          "source"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "PATCH /api/whistleblower/admin/reports/{trackingId}/status": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "trackingId": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "trackingId",
+              "status"
+            ]
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "data",
+          "source"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "404": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/whistleblower/admin/reports/{trackingId}/reanalyze": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "trackingId": {
+                "type": "string"
+              },
+              "verification": {
+                "type": "object",
+                "properties": {
+                  "isLegitimate": {
+                    "type": "boolean"
+                  },
+                  "credibilityScore": {
+                    "type": "number"
+                  },
+                  "spamIndicators": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "contentAnalysis": {
+                    "type": "string"
+                  },
+                  "category": {
+                    "type": "string"
+                  },
+                  "riskLevel": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "low"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "medium"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "high"
+                        ]
+                      }
+                    ]
+                  },
+                  "organizationType": {
+                    "type": "string"
+                  },
+                  "namedOrganization": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "isLegitimate",
+                  "credibilityScore",
+                  "spamIndicators",
+                  "contentAnalysis",
+                  "category",
+                  "riskLevel",
+                  "organizationType",
+                  "namedOrganization"
+                ]
+              }
+            },
+            "required": [
+              "trackingId",
+              "verification"
+            ]
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "data",
+          "source"
+        ]
+      },
+      "404": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "502": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "503": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/whistleblower/health": {
+    "security": "public",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "service": {
+            "type": "string"
+          },
+          "veniceAI": {
+            "type": "string"
+          },
+          "shroud": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "service",
+          "veniceAI",
+          "shroud",
+          "timestamp"
+        ]
+      }
+    }
+  },
+  "GET /api/whistleblower/enclave/attestation": {
+    "security": "public",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "available": {
+                "type": "boolean"
+              },
+              "pcr0": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "available",
+              "pcr0"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "available": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "available"
+            ]
+          }
+        ]
+      },
+      "502": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/admin/audit-log": {
+    "security": "internal",
+    "bodyFields": [
+      "action",
+      "adminEmail",
+      "adminUserId",
+      "details",
+      "endpoint",
+      "method",
+      "responseStatus"
+    ],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/admin/audit-logs": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [
+      "action",
+      "adminEmail",
+      "endDate",
+      "limit",
+      "page",
+      "resourceId",
+      "severity",
+      "startDate"
+    ],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "entries": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "auditId": {
+                      "type": "string"
+                    },
+                    "criticalNotification": {
+                      "type": "object",
+                      "properties": {
+                        "state": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "enum": [
+                                "pending"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "failed"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "sending"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "sent"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "uncertain"
+                              ]
+                            }
+                          ]
+                        },
+                        "attempts": {
+                          "type": "number"
+                        },
+                        "nextAttemptAt": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "leaseId": {
+                          "type": "string"
+                        },
+                        "sentAt": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "lastError": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "state",
+                        "attempts",
+                        "nextAttemptAt"
+                      ]
+                    },
+                    "adminUserId": {
+                      "type": "string"
+                    },
+                    "adminEmail": {
+                      "type": "string"
+                    },
+                    "action": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "evidence_access"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "contact_info_decrypt"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "narrative_decrypt"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "report_status_change"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "report_analyze"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "report_list_view"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "stats_view"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "user_invited"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "user_role_changed"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "user_deleted"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "role_change_blocked"
+                          ]
+                        }
+                      ]
+                    },
+                    "severity": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "critical"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "important"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "info"
+                          ]
+                        }
+                      ]
+                    },
+                    "endpoint": {
+                      "type": "string"
+                    },
+                    "method": {
+                      "type": "string"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "responseStatus": {
+                      "type": "number"
+                    },
+                    "details": {
+                      "type": "object",
+                      "properties": {
+                        "phase": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "enum": [
+                                "attempted"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "response"
+                              ]
+                            }
+                          ]
+                        },
+                        "resourceId": {
+                          "type": "string"
+                        },
+                        "filename": {
+                          "type": "string"
+                        },
+                        "newStatus": {
+                          "type": "string"
+                        },
+                        "agentId": {
+                          "type": "string"
+                        },
+                        "ipAddress": {
+                          "type": "string"
+                        },
+                        "userAgent": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "auditId",
+                    "adminUserId",
+                    "adminEmail",
+                    "action",
+                    "severity",
+                    "endpoint",
+                    "method",
+                    "timestamp",
+                    "responseStatus",
+                    "details"
+                  ]
+                }
+              },
+              "total": {
+                "type": "number"
+              },
+              "page": {
+                "type": "number"
+              },
+              "limit": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "entries",
+              "total",
+              "page",
+              "limit"
+            ]
+          }
+        },
+        "required": [
+          "success",
+          "data"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/dissemination/{trackingId}/plan": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "plan": {
+            "type": "object",
+            "properties": {
+              "trackingId": {
+                "type": "string"
+              },
+              "categories": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": [
+                        "ai-safety"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "trust-safety"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "encryption"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "financial-fraud"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "discrimination-harassment"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "cyber-security"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "crypto"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "environment-climate"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "government-accountability"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "illegal-government-activity"
+                      ]
+                    }
+                  ]
+                }
+              },
+              "channels": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "entityId": {
+                      "type": "string"
+                    },
+                    "entityName": {
+                      "type": "string"
+                    },
+                    "tier": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "A"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "B"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "C"
+                          ]
+                        }
+                      ]
+                    },
+                    "supported": {
+                      "type": "boolean"
+                    },
+                    "consentSatisfied": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "notes": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "entityId",
+                    "entityName",
+                    "tier",
+                    "supported",
+                    "consentSatisfied",
+                    "reason"
+                  ]
+                }
+              },
+              "consent": {
+                "type": "object",
+                "properties": {
+                  "psst": {
+                    "type": "object",
+                    "properties": {
+                      "granted": {
+                        "type": "boolean"
+                      },
+                      "treatment": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "contact-now"
+                            ]
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "contact-on-match"
+                            ]
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "hold-encrypted"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "granted"
+                    ]
+                  },
+                  "agency": {
+                    "type": "boolean"
+                  },
+                  "legalReview": {
+                    "type": "boolean"
+                  },
+                  "press": {
+                    "type": "boolean"
+                  },
+                  "capturedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "textVersion": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "psst",
+                  "agency",
+                  "capturedAt",
+                  "textVersion"
+                ],
+                "nullable": true
+              },
+              "generatedAt": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "trackingId",
+              "categories",
+              "channels",
+              "consent",
+              "generatedAt"
+            ]
+          }
+        },
+        "required": [
+          "success",
+          "plan"
+        ]
+      },
+      "404": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/dissemination/{trackingId}/approve": {
+    "security": "internal",
+    "bodyFields": [
+      "approvedBy",
+      "entityIds"
+    ],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "disposition": {
+            "type": "object",
+            "properties": {
+              "trackingId": {
+                "type": "string"
+              },
+              "channels": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "entityId": {
+                      "type": "string"
+                    },
+                    "tier": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "A"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "B"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "C"
+                          ]
+                        }
+                      ]
+                    },
+                    "state": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "failed"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "recommended"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "approved"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "packet_ready"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "dispatched"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "receipted"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "acknowledged"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "feedback_received"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "closed"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "suppressed"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "withdrawn"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "deferred"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "sla_breached"
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "entityId",
+                    "tier",
+                    "state"
+                  ]
+                }
+              },
+              "consentSnapshot": {
+                "type": "object",
+                "properties": {
+                  "psst": {
+                    "type": "object",
+                    "properties": {
+                      "granted": {
+                        "type": "boolean"
+                      },
+                      "treatment": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "contact-now"
+                            ]
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "contact-on-match"
+                            ]
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "hold-encrypted"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "granted"
+                    ]
+                  },
+                  "agency": {
+                    "type": "boolean"
+                  },
+                  "legalReview": {
+                    "type": "boolean"
+                  },
+                  "press": {
+                    "type": "boolean"
+                  },
+                  "capturedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "textVersion": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "psst",
+                  "agency",
+                  "capturedAt",
+                  "textVersion"
+                ]
+              },
+              "approvedBy": {
+                "type": "string"
+              },
+              "narrativeOverride": {
+                "type": "object",
+                "properties": {
+                  "narrative": {
+                    "type": "string"
+                  },
+                  "notes": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "setBy": {
+                    "type": "string"
+                  },
+                  "setAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "narrative",
+                  "notes",
+                  "setBy",
+                  "setAt"
+                ]
+              },
+              "narrativeReviewedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "narrativeReviewedBy": {
+                "type": "string"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "trackingId",
+              "channels",
+              "consentSnapshot",
+              "approvedBy",
+              "createdAt",
+              "updatedAt"
+            ]
+          },
+          "refused": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "entityId": {
+                  "type": "string"
+                },
+                "reason": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "entityId",
+                "reason"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "disposition",
+          "refused"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "default": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/dissemination/{trackingId}/withdraw": {
+    "security": "internal",
+    "bodyFields": [
+      "actor",
+      "entityId"
+    ],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "409": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/dissemination/{trackingId}/status": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "channels": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "entityId": {
+                  "type": "string"
+                },
+                "entityName": {
+                  "type": "string"
+                },
+                "tier": {
+                  "type": "string"
+                },
+                "state": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": [
+                        "failed"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "recommended"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "approved"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "packet_ready"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "dispatched"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "receipted"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "acknowledged"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "feedback_received"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "closed"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "suppressed"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "withdrawn"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "deferred"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "sla_breached"
+                      ]
+                    }
+                  ]
+                },
+                "attempts": {
+                  "type": "number"
+                },
+                "lastError": {
+                  "type": "string"
+                },
+                "dispatchedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "sla": {
+                  "type": "object",
+                  "properties": {
+                    "ackDueAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "feedbackDueAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "ackReceivedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "feedbackReceivedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "ackBreached": {
+                      "type": "boolean"
+                    },
+                    "feedbackBreached": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "ackDueAt",
+                    "feedbackDueAt",
+                    "ackBreached",
+                    "feedbackBreached"
+                  ]
+                },
+                "handoff": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string"
+                    },
+                    "fields": {
+                      "type": "object",
+                      "properties": {},
+                      "additionalProperties": {
+                        "type": "string"
+                      }
+                    },
+                    "depositBody": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "url",
+                    "fields",
+                    "depositBody"
+                  ]
+                },
+                "counsel": {
+                  "type": "object",
+                  "properties": {
+                    "counselId": {
+                      "type": "string"
+                    },
+                    "counselName": {
+                      "type": "string"
+                    },
+                    "contactHandle": {
+                      "type": "string"
+                    },
+                    "matterCode": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "counselId",
+                    "counselName",
+                    "contactHandle",
+                    "matterCode"
+                  ]
+                },
+                "receipts": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      },
+                      "receivedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "note": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "value",
+                      "receivedAt"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "entityId",
+                "entityName",
+                "tier",
+                "state",
+                "attempts",
+                "receipts"
+              ]
+            }
+          },
+          "disposition": {
+            "type": "object",
+            "properties": {
+              "trackingId": {
+                "type": "string"
+              },
+              "channels": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "entityId": {
+                      "type": "string"
+                    },
+                    "tier": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "A"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "B"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "C"
+                          ]
+                        }
+                      ]
+                    },
+                    "state": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "failed"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "recommended"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "approved"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "packet_ready"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "dispatched"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "receipted"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "acknowledged"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "feedback_received"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "closed"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "suppressed"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "withdrawn"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "deferred"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "sla_breached"
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "entityId",
+                    "tier",
+                    "state"
+                  ]
+                }
+              },
+              "consentSnapshot": {
+                "type": "object",
+                "properties": {
+                  "psst": {
+                    "type": "object",
+                    "properties": {
+                      "granted": {
+                        "type": "boolean"
+                      },
+                      "treatment": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "contact-now"
+                            ]
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "contact-on-match"
+                            ]
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "hold-encrypted"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "granted"
+                    ]
+                  },
+                  "agency": {
+                    "type": "boolean"
+                  },
+                  "legalReview": {
+                    "type": "boolean"
+                  },
+                  "press": {
+                    "type": "boolean"
+                  },
+                  "capturedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "textVersion": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "psst",
+                  "agency",
+                  "capturedAt",
+                  "textVersion"
+                ]
+              },
+              "approvedBy": {
+                "type": "string"
+              },
+              "narrativeOverride": {
+                "type": "object",
+                "properties": {
+                  "narrative": {
+                    "type": "string"
+                  },
+                  "notes": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "setBy": {
+                    "type": "string"
+                  },
+                  "setAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "narrative",
+                  "notes",
+                  "setBy",
+                  "setAt"
+                ]
+              },
+              "narrativeReviewedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "narrativeReviewedBy": {
+                "type": "string"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "trackingId",
+              "channels",
+              "consentSnapshot",
+              "approvedBy",
+              "createdAt",
+              "updatedAt"
+            ],
+            "nullable": true
+          },
+          "audit": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "eventId": {
+                  "type": "string"
+                },
+                "trackingId": {
+                  "type": "string"
+                },
+                "entityId": {
+                  "type": "string"
+                },
+                "event": {
+                  "type": "string"
+                },
+                "actor": {
+                  "type": "string"
+                },
+                "detail": {
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": {}
+                },
+                "at": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "eventId",
+                "trackingId",
+                "event",
+                "actor",
+                "at"
+              ]
+            }
+          },
+          "consent": {
+            "type": "object",
+            "properties": {
+              "psst": {
+                "type": "object",
+                "properties": {
+                  "granted": {
+                    "type": "boolean"
+                  },
+                  "treatment": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "contact-now"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "contact-on-match"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "hold-encrypted"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "granted"
+                ]
+              },
+              "agency": {
+                "type": "boolean"
+              },
+              "legalReview": {
+                "type": "boolean"
+              },
+              "press": {
+                "type": "boolean"
+              },
+              "capturedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "textVersion": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "psst",
+              "agency",
+              "capturedAt",
+              "textVersion"
+            ],
+            "nullable": true
+          }
+        },
+        "required": [
+          "success",
+          "channels",
+          "disposition",
+          "audit",
+          "consent"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/dissemination/{trackingId}/receipts": {
+    "security": "internal",
+    "bodyFields": [
+      "actor",
+      "entityId",
+      "kind",
+      "note",
+      "value"
+    ],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "404": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/dissemination/{trackingId}/retry": {
+    "security": "internal",
+    "bodyFields": [
+      "actor",
+      "entityId"
+    ],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success"
+        ]
+      },
+      "400": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "error": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "success",
+              "error"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "error": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "success"
+            ]
+          }
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/dissemination/{trackingId}/companion/{entityId}": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "404": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/dissemination/rules": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ruleId": {
+                  "type": "string"
+                },
+                "match": {
+                  "type": "object",
+                  "properties": {
+                    "categories": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "orgType": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      ]
+                    },
+                    "severity": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "jurisdiction": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "route": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "entityId": {
+                        "type": "string"
+                      },
+                      "tier": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "A"
+                            ]
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "B"
+                            ]
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "C"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "entityId",
+                      "tier"
+                    ]
+                  }
+                },
+                "version": {
+                  "type": "number"
+                },
+                "effectiveFrom": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "active": {
+                  "type": "boolean"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "ruleId",
+                "match",
+                "route",
+                "version",
+                "effectiveFrom",
+                "active",
+                "createdAt"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "rules"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/dissemination/rules": {
+    "security": "internal",
+    "bodyFields": [
+      "active",
+      "actor",
+      "match",
+      "route",
+      "ruleId"
+    ],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "rule": {
+            "type": "object",
+            "properties": {
+              "ruleId": {
+                "type": "string"
+              },
+              "match": {
+                "type": "object",
+                "properties": {
+                  "categories": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "orgType": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    ]
+                  },
+                  "severity": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "jurisdiction": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "route": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "entityId": {
+                      "type": "string"
+                    },
+                    "tier": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "A"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "B"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "C"
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "entityId",
+                    "tier"
+                  ]
+                }
+              },
+              "version": {
+                "type": "number"
+              },
+              "effectiveFrom": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "active": {
+                "type": "boolean"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "ruleId",
+              "match",
+              "route",
+              "version",
+              "effectiveFrom",
+              "active",
+              "createdAt"
+            ]
+          }
+        },
+        "required": [
+          "success",
+          "rule"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/dissemination/alerts": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "alerts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "trackingId": {
+                  "type": "string"
+                },
+                "entityId": {
+                  "type": "string"
+                },
+                "entityName": {
+                  "type": "string"
+                },
+                "tier": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": [
+                        "A"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "B"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "C"
+                      ]
+                    }
+                  ]
+                },
+                "state": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": [
+                        "failed"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "recommended"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "approved"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "packet_ready"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "dispatched"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "receipted"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "acknowledged"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "feedback_received"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "closed"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "suppressed"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "withdrawn"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "deferred"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "sla_breached"
+                      ]
+                    }
+                  ]
+                },
+                "kind": {
+                  "type": "string"
+                },
+                "attempts": {
+                  "type": "number"
+                },
+                "lastError": {
+                  "type": "string"
+                },
+                "dispatchedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "sla": {
+                  "type": "object",
+                  "properties": {
+                    "ackDueAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "feedbackDueAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "ackReceivedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "feedbackReceivedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "ackBreached": {
+                      "type": "boolean"
+                    },
+                    "feedbackBreached": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "ackDueAt",
+                    "feedbackDueAt",
+                    "ackBreached",
+                    "feedbackBreached"
+                  ]
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "trackingId",
+                "entityId",
+                "entityName",
+                "tier",
+                "state",
+                "kind",
+                "attempts",
+                "updatedAt"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "alerts"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/dissemination/{trackingId}/escrow-release": {
+    "security": "internal",
+    "bodyFields": [
+      "actor",
+      "entityId"
+    ],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "url"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "403": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "404": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/dissemination/escrow/{token}": {
+    "security": "public",
+    "bodyFields": [],
+    "queryFields": [
+      "file"
+    ],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "escrow": {
+            "type": "object",
+            "properties": {
+              "caseReference": {
+                "type": "string"
+              },
+              "entityName": {
+                "type": "string"
+              },
+              "expiresAt": {
+                "type": "string"
+              },
+              "files": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "download": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "download"
+                  ]
+                }
+              },
+              "notice": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "caseReference",
+              "entityName",
+              "expiresAt",
+              "files",
+              "notice"
+            ]
+          }
+        },
+        "required": [
+          "success",
+          "escrow"
+        ]
+      },
+      "401": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "403": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "409": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/dissemination/{trackingId}/secure-packet-generate": {
+    "security": "internal",
+    "bodyFields": [
+      "actor"
+    ],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "url"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "503": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "default": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success"
+        ]
+      }
+    }
+  },
+  "POST /api/dissemination/{trackingId}/secure-packet-email": {
+    "security": "internal",
+    "bodyFields": [
+      "actor",
+      "recipientEmail"
+    ],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "url": {
+            "type": "string"
+          },
+          "sentTo": {
+            "type": "string"
+          },
+          "mode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "live"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "dryrun"
+                ]
+              }
+            ]
+          }
+        },
+        "required": [
+          "success"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "default": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/dissemination/secure-packet/{token}": {
+    "security": "public",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {}
+  },
+  "POST /api/dissemination/secure-packet/{token}/reveal": {
+    "security": "public",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "401": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "403": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/dissemination/anchors": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "anchors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "anchorId": {
+                  "type": "string"
+                },
+                "root": {
+                  "type": "string"
+                },
+                "commitmentVersion": {
+                  "type": "number"
+                },
+                "batchRoot": {
+                  "type": "string"
+                },
+                "prevRoot": {
+                  "type": "string"
+                },
+                "eventCount": {
+                  "type": "number"
+                },
+                "firstEventAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "lastEventAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "proofHash": {
+                  "type": "string"
+                },
+                "txHash": {
+                  "type": "string"
+                },
+                "network": {
+                  "type": "string"
+                },
+                "anchoredAt": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "anchorId",
+                "root",
+                "eventCount",
+                "firstEventAt",
+                "lastEventAt",
+                "network",
+                "anchoredAt"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "anchors"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/dissemination/anchors/history": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [
+      "head",
+      "limit",
+      "tail"
+    ],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "trust": {
+            "type": "string"
+          },
+          "head": {
+            "type": "string"
+          },
+          "checkpoint": {
+            "type": "string",
+            "nullable": true
+          },
+          "anchors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "root": {
+                  "type": "string"
+                },
+                "commitmentVersion": {
+                  "type": "number"
+                },
+                "batchRoot": {
+                  "type": "string"
+                },
+                "eventCount": {
+                  "type": "number"
+                },
+                "prevRoot": {
+                  "type": "string"
+                },
+                "proofHash": {
+                  "type": "string"
+                },
+                "txHash": {
+                  "type": "string"
+                },
+                "network": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "root",
+                "eventCount",
+                "network"
+              ]
+            }
+          },
+          "nextRoot": {
+            "type": "string",
+            "nullable": true
+          },
+          "complete": {
+            "type": "boolean"
+          },
+          "stopReason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "checkpoint"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "page_limit"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "legacy_boundary"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "missing_anchor"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "checkpoint_unreachable"
+                ]
+              }
+            ]
+          },
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "trust",
+          "head",
+          "checkpoint",
+          "anchors",
+          "nextRoot",
+          "complete",
+          "stopReason",
+          "success"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/dissemination/{trackingId}/audit-proofs": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "proofs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "eventId": {
+                  "type": "string"
+                },
+                "event": {
+                  "type": "string"
+                },
+                "at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "anchored": {
+                  "type": "boolean"
+                },
+                "tampered": {
+                  "type": "boolean"
+                },
+                "root": {
+                  "type": "string"
+                },
+                "commitmentVersion": {
+                  "type": "number"
+                },
+                "batchRoot": {
+                  "type": "string"
+                },
+                "eventCount": {
+                  "type": "number"
+                },
+                "prevRoot": {
+                  "type": "string"
+                },
+                "txHash": {
+                  "type": "string"
+                },
+                "network": {
+                  "type": "string"
+                },
+                "proof": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "hash": {
+                        "type": "string"
+                      },
+                      "position": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "left"
+                            ]
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "right"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "hash",
+                      "position"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "eventId",
+                "event",
+                "at",
+                "anchored",
+                "tampered"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "proofs"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/dissemination/{trackingId}/redact": {
+    "security": "internal",
+    "bodyFields": [
+      "actor",
+      "mode",
+      "narrative",
+      "notes"
+    ],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "proposal": {
+                "type": "object",
+                "properties": {
+                  "redacted": {
+                    "type": "string"
+                  },
+                  "notes": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "clean": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "redacted",
+                  "notes",
+                  "clean"
+                ]
+              },
+              "original": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "success",
+              "proposal",
+              "original"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "success"
+            ]
+          }
+        ]
+      },
+      "400": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "error": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "success",
+              "error"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "error": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "success"
+            ]
+          }
+        ]
+      },
+      "404": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {}
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/dissemination/{trackingId}/relay": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "thread": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "messageId": {
+                  "type": "string"
+                },
+                "entityId": {
+                  "type": "string"
+                },
+                "entityName": {
+                  "type": "string"
+                },
+                "direction": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": [
+                        "to-reporter"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "from-reporter"
+                      ]
+                    }
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "messageId",
+                "direction",
+                "body",
+                "createdAt"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "thread"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/dissemination/{trackingId}/relay": {
+    "security": "internal",
+    "bodyFields": [
+      "actor",
+      "body",
+      "entityId"
+    ],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success"
+        ]
+      },
+      "400": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "error": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "success",
+              "error"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "error": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "success"
+            ]
+          }
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/dissemination/counsel": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [
+      "active"
+    ],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "partners": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "counselId": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "channels": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "contactHandle": {
+                  "type": "string"
+                },
+                "engagementModel": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": [
+                        "psst-legal"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "panel"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "reporter-own"
+                      ]
+                    }
+                  ]
+                },
+                "active": {
+                  "type": "boolean"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "counselId",
+                "name",
+                "channels",
+                "contactHandle",
+                "engagementModel",
+                "active",
+                "createdAt",
+                "updatedAt"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "partners"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/dissemination/counsel": {
+    "security": "internal",
+    "bodyFields": [
+      "active",
+      "channels",
+      "contactHandle",
+      "counselId",
+      "engagementModel",
+      "name"
+    ],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "partner": {
+            "type": "object",
+            "properties": {
+              "counselId": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "channels": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "contactHandle": {
+                "type": "string"
+              },
+              "engagementModel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": [
+                      "psst-legal"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "panel"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "reporter-own"
+                    ]
+                  }
+                ]
+              },
+              "active": {
+                "type": "boolean"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "counselId",
+              "name",
+              "channels",
+              "contactHandle",
+              "engagementModel",
+              "active",
+              "createdAt",
+              "updatedAt"
+            ]
+          }
+        },
+        "required": [
+          "success"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/dissemination/{trackingId}/counsel/assign": {
+    "security": "internal",
+    "bodyFields": [
+      "actor",
+      "counselId",
+      "entityId"
+    ],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "assignment": {
+            "type": "object",
+            "properties": {
+              "counselId": {
+                "type": "string"
+              },
+              "counselName": {
+                "type": "string"
+              },
+              "contactHandle": {
+                "type": "string"
+              },
+              "matterCode": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "counselId",
+              "counselName",
+              "contactHandle",
+              "matterCode"
+            ]
+          },
+          "workspaceUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "success",
+          "assignment",
+          "workspaceUrl"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "409": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/dissemination/{trackingId}/counsel/attest": {
+    "security": "internal",
+    "bodyFields": [
+      "actor",
+      "entityId",
+      "value"
+    ],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "409": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/dissemination/counsel-workspace/{token}": {
+    "security": "public",
+    "bodyFields": [],
+    "queryFields": [
+      "doc",
+      "file"
+    ],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "matter": {
+            "type": "object",
+            "properties": {
+              "matterCode": {
+                "type": "string"
+              },
+              "counselName": {
+                "type": "string"
+              },
+              "entityId": {
+                "type": "string"
+              },
+              "entityName": {
+                "type": "string"
+              },
+              "state": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": [
+                      "failed"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "recommended"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "approved"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "packet_ready"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "dispatched"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "receipted"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "acknowledged"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "feedback_received"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "closed"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "suppressed"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "withdrawn"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "deferred"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "sla_breached"
+                    ]
+                  }
+                ]
+              },
+              "files": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "download": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "download"
+                  ]
+                }
+              },
+              "documents": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "doc": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "doc",
+                    "description"
+                  ]
+                }
+              },
+              "instructions": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "matterCode",
+              "counselName",
+              "entityId",
+              "entityName",
+              "state",
+              "files",
+              "documents",
+              "instructions"
+            ]
+          }
+        },
+        "required": [
+          "success",
+          "matter"
+        ]
+      },
+      "401": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "403": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "404": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "409": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/dissemination/receipts/webhook": {
+    "security": "public",
+    "bodyFields": [
+      "entityId",
+      "kind",
+      "raw",
+      "trackingId"
+    ],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "parsed": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success",
+          "parsed"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "404": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/dissemination/inbound/webhook": {
+    "security": "public",
+    "bodyFields": [
+      "authentication",
+      "body",
+      "from",
+      "messageId",
+      "receivedAt",
+      "recipient",
+      "s3Key",
+      "subject"
+    ],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "inboundId": {
+            "type": "string"
+          },
+          "autoParsed": {
+            "type": "boolean"
+          },
+          "trackingId": {
+            "type": "string"
+          },
+          "entityId": {
+            "type": "string"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "inboundId",
+          "autoParsed",
+          "success"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/dissemination/inbound": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [
+      "status"
+    ],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "mail": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "authentication": {
+                  "type": "object",
+                  "properties": {
+                    "spf": {
+                      "type": "string"
+                    },
+                    "dkim": {
+                      "type": "string"
+                    },
+                    "dmarc": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "inboundId": {
+                  "type": "string"
+                },
+                "recipient": {
+                  "type": "string"
+                },
+                "from": {
+                  "type": "string"
+                },
+                "subject": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "string"
+                },
+                "s3Key": {
+                  "type": "string"
+                },
+                "messageId": {
+                  "type": "string"
+                },
+                "trackingId": {
+                  "type": "string"
+                },
+                "entityId": {
+                  "type": "string"
+                },
+                "status": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": [
+                        "resolved"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "dismissed"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "pending_review"
+                      ]
+                    }
+                  ]
+                },
+                "autoParsed": {
+                  "type": "boolean"
+                },
+                "resolvedBy": {
+                  "type": "string"
+                },
+                "resolvedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "receivedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "inboundId",
+                "recipient",
+                "from",
+                "subject",
+                "body",
+                "status",
+                "autoParsed",
+                "receivedAt",
+                "createdAt"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "mail"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/dissemination/inbound/{inboundId}/resolve": {
+    "security": "internal",
+    "bodyFields": [
+      "actor",
+      "entityId",
+      "kind",
+      "trackingId",
+      "value"
+    ],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "409": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "POST /api/dissemination/inbound/{inboundId}/dismiss": {
+    "security": "internal",
+    "bodyFields": [
+      "actor"
+    ],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success"
+        ]
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "409": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  },
+  "GET /api/dissemination/analytics": {
+    "security": "internal",
+    "bodyFields": [],
+    "queryFields": [],
+    "responses": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "analytics": {
+            "type": "object",
+            "properties": {
+              "generatedAt": {
+                "type": "string"
+              },
+              "totalSubmissions": {
+                "type": "number"
+              },
+              "byState": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": {
+                  "type": "number"
+                }
+              },
+              "funnel": {
+                "type": "object",
+                "properties": {
+                  "approved": {
+                    "type": "number"
+                  },
+                  "dispatched": {
+                    "type": "number"
+                  },
+                  "acknowledged": {
+                    "type": "number"
+                  },
+                  "feedback": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "approved",
+                  "dispatched",
+                  "acknowledged",
+                  "feedback"
+                ]
+              },
+              "entities": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "entityId": {
+                      "type": "string"
+                    },
+                    "entityName": {
+                      "type": "string"
+                    },
+                    "tier": {
+                      "type": "string"
+                    },
+                    "total": {
+                      "type": "number"
+                    },
+                    "dispatched": {
+                      "type": "number"
+                    },
+                    "acknowledged": {
+                      "type": "number"
+                    },
+                    "feedback": {
+                      "type": "number"
+                    },
+                    "failed": {
+                      "type": "number"
+                    },
+                    "withdrawn": {
+                      "type": "number"
+                    },
+                    "ackSlaBreaches": {
+                      "type": "number"
+                    },
+                    "feedbackSlaBreaches": {
+                      "type": "number"
+                    },
+                    "medianAckHours": {
+                      "type": "number",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "entityId",
+                    "entityName",
+                    "tier",
+                    "total",
+                    "dispatched",
+                    "acknowledged",
+                    "feedback",
+                    "failed",
+                    "withdrawn",
+                    "ackSlaBreaches",
+                    "feedbackSlaBreaches",
+                    "medianAckHours"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "generatedAt",
+              "totalSubmissions",
+              "byState",
+              "funnel",
+              "entities"
+            ]
+          }
+        },
+        "required": [
+          "success",
+          "analytics"
+        ]
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      }
+    }
+  }
+}

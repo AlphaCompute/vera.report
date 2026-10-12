@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/AlphaCompute/vera.report/security/advisories/new
+    about: Use the private advisory form when available. If unavailable, use the email fallback below. Never post vulnerabilities in public issues.
+  - name: Security reporting email fallback
+    url: mailto:ir@alphacompute.ai?subject=Vera%20security%20vulnerability
+    about: Alpha Compute security.txt contact. Use synthetic data and see SECURITY.md for details.

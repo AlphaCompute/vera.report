@@ -1,0 +1,2 @@
+# These files are executed by Linux even when Terraform or Docker runs on Windows.
+*.sh text eol=lf

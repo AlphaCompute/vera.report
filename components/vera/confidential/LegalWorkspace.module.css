@@ -1,0 +1,72 @@
+.workspace { color: #202923; }
+.identity { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 26px; background: #edf2e9; border: 1px solid #d3ddcf; }
+.firm { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.firmIcon { display: grid; place-items: center; width: 42px; height: 42px; flex-shrink: 0; border: 1px solid #bdcdb8; background: #f8faf5; color: #31523b; }
+.firm strong { display: block; font-size: 18px; overflow-wrap: anywhere; }
+.firm small { display: flex; align-items: center; gap: 7px; margin-top: 4px; font-size: 12px; color: #4d6650; }
+.firm small::before { content: ''; width: 6px; height: 6px; background: #427448; border-radius: 50%; }
+.sessionActions { display: flex; gap: 20px; font-size: 13px; flex-shrink: 0; }
+.sessionActions button { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; color: #344e3d; cursor: pointer; }
+.sessionActions button:hover { text-decoration: underline; }
+.lockNote { margin: 10px 0 20px; font-size: 12px; line-height: 1.6; color: #626c61; }
+.navigation { display: flex; gap: 28px; border-bottom: 1px solid #dce1d7; margin-bottom: 24px; }
+.navigation a { display: inline-flex; align-items: center; gap: 8px; min-height: 50px; padding: 12px 0; text-decoration: none; color: #616b60; font-size: 14px; border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.navigation a[aria-current=page] { color: #213d2b; border-bottom-color: #31523b; font-weight: 600; }
+.renewal { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding: 20px 24px; border: 1px solid #e4d7b7; background: #fcf8ed; margin-bottom: 24px; }
+.renewal > svg { color: #927032; flex-shrink: 0; }
+.renewalText { flex: 1; min-width: 200px; }
+.renewalText h2 { font-family: inherit; font-size: 14px; font-weight: 600; margin: 0 0 5px; }
+.renewalText p { font-size: 13px; color: #72664e; line-height: 1.6; max-width: 68ch; }
+.renewalError { flex-basis: 100%; }
+.checklist { background: #fff; border: 1px solid #dce1d7; }
+.checklistHeader { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 24px 26px; }
+.checklistHeader h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 24px; font-weight: 400; margin: 0 0 6px; }
+.checklistHeader p { font-size: 13px; color: #65705f; line-height: 1.6; }
+.progress { min-width: 106px; text-align: right; }
+.progress span { font-size: 12px; color: #5d6b58; white-space: nowrap; }
+.progress progress { display: block; width: 106px; height: 4px; margin-top: 10px; border: none; background: #e7ece2; color: #395c3d; accent-color: #395c3d; }
+.progress progress::-webkit-progress-bar { background: #e7ece2; }
+.progress progress::-webkit-progress-value { background: #395c3d; }
+.steps { list-style: none; margin: 0; padding: 0; }
+.steps > li { border-top: 1px solid #e4e8df; }
+.stepSummary { display: flex; align-items: center; gap: 16px; padding: 18px 26px; cursor: pointer; list-style: none; }
+.stepSummary::-webkit-details-marker { display: none; }
+.stepSummary:hover { background: #f8faf5; }
+.stepSummary > svg { flex-shrink: 0; color: #73806b; transition: transform .15s; }
+.step[open] > .stepSummary > svg { transform: rotate(180deg); }
+.stepLabel { flex: 1; min-width: 0; }
+.stepLabel strong { display: block; font-size: 14px; font-weight: 600; }
+.stepLabel small { display: block; margin-top: 4px; color: #697262; font-size: 12px; line-height: 1.5; }
+.stepStatus { color: #68745f; font-size: 11px; white-space: nowrap; }
+.stepStatus[data-done=true] { color: #396044; }
+.tick { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 28px; height: 28px; border: 1px solid #ced6c8; border-radius: 50%; color: transparent; font-size: 13px; }
+.tick[data-done=true] { border-color: #3d6546; background: #3d6546; color: #fff; }
+.stepBody { padding: 0 26px 24px 70px; max-width: 880px; font-size: 14px; line-height: 1.6; }
+.stepBody > p { color: #64705d; font-size: 13px; }
+.stepBody form { padding: 20px; background: #f8faf5; border: 1px solid #e1e6db; }
+.stepBody input:not([type=checkbox]), .stepBody select { background: #fff; border: 1px solid #c7cfc0; min-height: 44px; font-size: 13px; max-width: 100%; }
+.stepBody input[type=file] { width: 100%; padding: 8px; }
+.stepBody input[type=file]::file-selector-button { border: 0; padding: 7px 10px; margin-right: 12px; background: #e8eee2; color: #28412c; cursor: pointer; }
+.stepBody input[type=checkbox] { accent-color: #31523b; }
+.stepBody button { font-size: 13px; min-height: 40px; }
+.stepBody form > button { background: #213d2b; color: #fff; border-color: #213d2b; }
+.tools { margin-top: 32px; padding-top: 24px; border-top: 1px solid #dce1d7; }
+.tools > summary { cursor: pointer; color: #344e3d; font-size: 14px; font-weight: 600; min-height: 44px; }
+.tools > section { background: #fff; }
+.content { display: grid; gap: 28px; }
+.content > section { background: #fff; padding: 24px 26px; border: 1px solid #dce1d7; }
+.workspace :is(a, button, summary, input, select):focus-visible { outline: 3px solid #64805a; outline-offset: 4px; }
+@media (max-width: 640px) {
+  .identity { align-items: flex-start; flex-direction: column; gap: 10px; padding: 18px; }
+  .sessionActions { justify-content: flex-end; width: 100%; }
+  .navigation { gap: 18px; }
+  .navigation a { font-size: 12px; }
+  .renewal { padding: 18px; }
+  .checklistHeader { padding: 20px 18px; align-items: flex-start; }
+  .checklistHeader h2 { font-size: 21px; }
+  .stepSummary { padding: 17px 18px; gap: 10px; }
+  .stepStatus { display: none; }
+  .stepBody { padding: 0 18px 20px; }
+  .stepBody form { padding: 16px; }
+  .content > section { padding: 20px 18px; }
+}

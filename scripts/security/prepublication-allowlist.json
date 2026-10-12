@@ -1,0 +1,17 @@
+[
+  {
+    "rule": "dotenv-test-file",
+    "path": ".env.test",
+    "reason": "Only localhost configuration and fixed synthetic test credentials."
+  },
+  {
+    "rule": "generic-secret-assignment",
+    "fingerprint": "test\u2026sha256:f99ebef9cbf9",
+    "reason": "Fixed synthetic test-only marker in tests/setup.ts."
+  },
+  {
+    "rule": "generic-secret-assignment",
+    "fingerprint": "Q0FT\u2026sha256:68cd717e2f29",
+    "reason": "Fixed synthetic test-only marker in tests/unit/api/whistleblowerConfidentialIsolation.test.ts."
+  }
+]

@@ -1,0 +1,136 @@
+node_modules
+temp
+build
+dist
+.DS_Store
+package.ts
+
+# Next.js
+/AGENTS.md
+.next/
+out/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+.env.*
+!.env.example
+!.env.backend.example
+!.env.frontend.example
+!.env.test
+.env.staging
+.env.production
+
+# Local V2 deploy records (address, domain, opening key, CMA signing key).
+# Kept ignored after the Midnight removal so leftover local key material is never committed.
+deployments/
+
+# Midnight LevelDB private state (per-wallet, created at runtime)
+midnight-private-state-*
+
+# VS Code
+.vscode/*
+.history/
+*.vsix
+
+# IDEA files
+.idea
+
+# VIM
+Session.vim
+.vim/
+
+# Other private editor folders
+.nvim/
+.emacs/
+.helix/
+.claude/
+.vercel
+
+# Wallet data
+.midnight/
+
+# Internal QA notes
+QA_ISSUES.md
+
+# Terraform (staging)
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/*.tfplan
+terraform/tfplan
+terraform/plan-output.txt
+terraform/crash.log
+terraform/override.tf
+terraform/override.tf.json
+terraform/*_override.tf
+terraform/*_override.tf.json
+
+# Terraform (production)
+terraform-prod/.terraform/
+terraform-prod/*.tfstate
+terraform-prod/*.tfstate.*
+terraform-prod/*.tfplan
+terraform-prod/tfplan
+terraform-prod/plan-output.txt
+terraform-prod/crash.log
+terraform-prod/override.tf
+terraform-prod/override.tf.json
+terraform-prod/*_override.tf
+terraform-prod/*_override.tf.json
+
+# Terraform (Auth0 legal tenant). State holds client metadata; tfvars are
+# tenant specifics kept out of the repository until reviewed.
+auth0/.terraform/
+auth0/*.tfstate
+auth0/*.tfstate.*
+auth0/*.tfplan
+auth0/terraform.tfvars
+auth0/crash.log
+
+# AWS
+*.pem
+!enclave/verification/aws-nitro-root.pem
+*.key
+rds-combined-ca-bundle.pem
+global-bundle.pem
+
+# Playwright MCP test artifacts
+.playwright-mcp/
+
+# Playwright/Jest run artifacts at repo root (traces, screenshots, reports)
+test-results/
+playwright-report/
+
+# Secrets — never commit
+*.secret
+*.credentials
+.aws/
+coverage/
+# Synthetic browser recordings and generated delivery evidence
+/artifacts/delivery/
+
+# Compiler incremental cache
+*.tsbuildinfo
+# Local environment for independent attestation verification.
+.venv-attestation/
+
+# Local diagnostic output and Python caches
+*.log
+__pycache__/
+*.py[cod]
+
+# Local E2E stack state and artifacts (synthetic keys only)
+qa/e2e/.stack-state.json
+qa/e2e/test-results/
+
+# Local identity policies and generated credentials
+enclave/legal-identity-policy*.json
+*.eif
+*.p12
+*.pfx
+*.keystore
+qa/**/playwright-report/
+qa/**/test-results/
+qa/.auth/

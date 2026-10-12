@@ -1,0 +1,21 @@
+.text { white-space: pre-wrap; }
+
+/* Keep words intact and reserve their final width throughout the reveal. */
+.word { display: inline-block; white-space: pre; }
+
+.glyph {
+  display: inline-block;
+}
+
+.text[data-typing='true'] .glyph {
+  animation: reveal var(--glyph-duration) cubic-bezier(.2, .65, .3, 1) var(--glyph-delay) both;
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(.12em); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text[data-typing='true'] .glyph { animation: none; opacity: 1; transform: none; }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "vera-qa",
+  "version": "0.0.1",
+  "private": true,
+  "description": "QA test workspace for Vera. Isolated from root package.json so QA tooling deps stay separate.",
+  "scripts": {
+    "test": "playwright test --config playwright.e2e.config.ts",
+    "test:headed": "playwright test --config playwright.e2e.config.ts --headed",
+    "test:ui": "playwright test --config playwright.e2e.config.ts --ui",
+    "test:debug": "PWDEBUG=1 playwright test --config playwright.e2e.config.ts",
+    "test:local": "playwright test --config playwright.local.config.ts",
+    "test:e2e": "playwright test --config playwright.e2e.config.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^22.10.0",
+    "dotenv": "^17.2.3",
+    "typescript": "^5.9.2"
+  }
+}
