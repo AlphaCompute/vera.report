@@ -21,7 +21,7 @@ globalThis.fetch = async (input, options) => {
     return Response.json({ error: 'Unauthorized synthetic request' }, { status: 401 });
   }
   if (url.pathname === '/api/v2/users/synthetic-admin' && method === 'GET') {
-    return Response.json({ user_id: 'synthetic-admin', email: 'qa@alphacompute.ai', email_verified: true, blocked: false });
+    return Response.json({ user_id: 'synthetic-admin', email: 'qa@example.org', email_verified: true, blocked: false });
   }
   if (url.pathname === '/api/v2/users/synthetic-admin/roles' && method === 'GET') {
     return Response.json([{ name: 'admin' }]);
